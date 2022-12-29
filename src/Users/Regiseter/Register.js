@@ -22,7 +22,7 @@ const navigate=useNavigate()
         const formdata=new  FormData()
         formdata.append("image",image)
 
-        const url=`https://api.imgbb.com/1/upload?expiration=600&key=${imagehostkey}`
+        const url=`https://api.imgbb.com/1/upload?key=${imagehostkey}`
 
  fetch(url,{
     method: 'POST',

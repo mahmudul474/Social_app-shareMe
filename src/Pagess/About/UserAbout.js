@@ -2,7 +2,10 @@ import React from 'react'
 import { FiEdit } from "react-icons/fi";
 
 
-const UserAbout = ({ user }) => {
+const UserAbout = ({ user,setEditabout }) => {
+
+
+
   const {
     name,
     email,
@@ -51,14 +54,15 @@ const UserAbout = ({ user }) => {
           <div className="space-x-8 flex justify-between mt-32 md:mt-0 md:justify-center">
             <button className="text-white py-2 px-4 uppercase rounded bg-blue-400 hover:bg-blue-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
               
-              Connect
+            Message
             </button>
-            <button className="text-white py-2 px-4 uppercase rounded bg-gray-700 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
-              
-              Message
-            </button>
+           
             <div>
-            <button className="btn "><span><FiEdit></FiEdit></span>Edit about</button>
+            <label
+
+            onClick={()=>setEditabout(user)}
+            htmlFor="edtiabout-modal"  className="btn"><span><FiEdit></FiEdit></span>Edit about</label>
+           
             </div>
           </div>
         </div>

@@ -4,6 +4,7 @@ import { FcGoogle} from "react-icons/fc";
 import { GoogleAuthProvider } from "firebase/auth";
 import { userContext } from '../../AuthContext/AuthContext';
 import {  useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 
 
 
@@ -19,14 +20,57 @@ const Google = () => {
         loginwithgoogle(provider)
         .then((result)=>{
               const user=result.user 
-              console.log(user)
-              navigate("/home")
+            //   saveduser(user.displayName,user.email,user.photoURL)
+
               
 
         }).catch((err)=>{
             console.log(err)
         })
     }
+
+
+
+
+    ///save user info monog
+
+  
+    // const saveduser=(name,email,photo)=>{
+    //     const userdettailse={
+    //         name:name,
+    //         email:email,
+    //         photoURL:photo
+    //     }
+    //     console.log(typeof(userdettailse))
+        
+    //     fetch('http://localhost:5000/users',{
+    //         method:'POST',
+    //         headers:{
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body:JSON.stringify(userdettailse),
+    //     }).then(res=>res.json())
+    //     .then(data=>{
+    //         console.log(data)
+    //        if(data.acknowledged){
+    //         toast.success("user  registered successfully",90000)
+    //         navigate("/home")
+
+           
+    //        }
+            
+    //     })
+
+
+    //      }
+        
+        
+        
+        
+        
+        
+
+    
     return (
     <div>
            <button onClick={handlelogin} className="btn btn-wide"><span className='mr-4 text-2xl'> <FcGoogle></FcGoogle></span>  Google</button>
