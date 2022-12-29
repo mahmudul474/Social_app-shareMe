@@ -1,14 +1,114 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
+import { Link, useNavigate,  } from 'react-router-dom';
+import { userContext } from '../../AuthContext/AuthContext';
+import Google from '../SocialUSer/Google';
 
 const Register = () => {
+const{createuser,uptadeUser}=useContext(userContext)
+const [eroo,setErro]=useState("")
+const navigate=useNavigate()
+
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
+    const imagehostkey=process.env.REACT_APP_IMBBKEY;
+ 
+    console.log(imagehostkey)
     const handleRegister=data=>{
-        console.log(data)
+        const image=data.photo[0]
+        console.log(image)
+        const formdata=new  FormData()
+        formdata.append("image",image)
+
+        const url=`https://api.imgbb.com/1/upload?expiration=600&key=${imagehostkey}`
+
+ fetch(url,{
+    method: 'POST',
+    body:formdata,
+ })
+ .then(res=>res.json())
+ .then(imagedata=>{
+    ///userphot
+    const photo=imagedata.data.display_url;
+    console.log(photo)
+    
+//craate user
+    createuser(data.email, data.password)
+    .then((result)=>{
+    setErro("")
+      const user=result.user;
+      //uptade user
+      useruptade(data.name,photo)
+      //save user
+      navigate("/home") 
+      saveduser(data.name,data.email,photo)
+
+    }).catch((err)=>{
+         const message = err.message
+         setErro(message)
+         alert(message)
+     })
+    
+ })
+
     }
+
+
+//user  uptade
+    const useruptade=(name,photo,)=>{
+        const userinfo={
+            displayName:name,
+            photoURL:photo
+        }
+        uptadeUser(userinfo)
+        .then(()=>{})
+        .catch(ero=>{
+            setErro(ero.message)
+
+        })
+    }
+
+
+
+
+
+
+
+    ///save user info monog
+
+  
+ const saveduser=(name,email,photo)=>{
+
+const userdettailse={
+    name:name,
+    email:email,
+    photoURL:photo
+}
+
+fetch('http://localhost:5000/users',{
+    method:'POST',
+    headers:{
+        'Content-Type': 'application/json',
+    },
+    body:JSON.stringify(userdettailse),
+}).then(res=>res.json())
+.then(data=>{
+   if(data.acknowledged){
+    toast.success("user  registered successfully",90000)
+   
+   }
+    
+})
+
+
+
+
+ }
+
+
+
 
 
 
@@ -16,13 +116,13 @@ const Register = () => {
     return (
         <div className="bg-slate-600 min-h-screen flex flex-col bg-base-300">
         <div className="container max-w-lg mx-auto flex-1 flex flex-col items-center justify-center px-2">
-            <form   onSubmit={ handleSubmit( handleRegister)} 
-             className="bg-gray-300 px-6 py-8 rounded shadow-md text-black w-full">
-                <h1 className="mb-8 text-3xl text-center">Register</h1>
-
-
-                <input 
+        <div className='bg-white lg:w-[500px] p-5'>
+        <form   onSubmit={ handleSubmit( handleRegister)} 
+             className="  px-6 rounded   text-black w-full">
+                <h1 className=" text-3xl text-center">Register</h1>
                 
+                      <p className='text-red-700 capitalize' >{eroo}</p>
+                <input 
                 {...register("name", { 
                     required: true,
                     minLength: { value: 4, message: "name must be 4 characters long" }
@@ -31,15 +131,31 @@ const Register = () => {
 
                   <p className='text-left text-red-600 capitalize'>{errors?.name && <span>{errors?.name?.message}</span>}</p>
 
+
+
+
+
+
+                  <input type="file" required
+                  
+                  {...register("photo", {required:"photo is required",})} 
+                        className="block border border-grey-light w-full p-3 rounded mt-4" />
+
+                        {errors?.photo && <p className='text-left text-red-600 capitalize mb-2'>{errors.photo.message}</p>}
+
+
+
+
+
                   <input type="email"placeholder='Email'
                   
                   {...register("email", {required:"email is required",})} 
                         className="block border border-grey-light w-full p-3 rounded mt-4" />
 
-                        {errors.email && <p className='text-left text-red-600 capitalize mb-2'>{errors.email.message}</p>}
+                        {errors?.email && <p className='text-left text-red-600 capitalize mb-2'>{errors.email.message}</p>}
 
 
-                <input type="password" className="block border border-grey-light w-full p-3 rounded my-6" name="password" placeholder="Password"
+                <input type="password" className="block border border-grey-light w-full p-3 rounded mt-6" name="password" placeholder="Password"
                 
                 {...register("password", {
                     required: "Password is required",
@@ -47,9 +163,9 @@ const Register = () => {
                     pattern: { value: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/, message: 'Password must have uppercase, number and special characters' }
                 })}
                 />
-{errors.password && <p className='text-red-500'>{errors.password.message}</p>}
+{errors.password && <p className='text-red-500 text-left'>{errors.password.message}</p>}
 
-                <button type="submit" className="w-full text-center py-3 rounded bg-black text-white hover:bg-green-dark focus:outline-none my-1">Create Account</button>
+                <button type="submit" className=" s:w-full text-center py-3 rounded btn btn-wide text-white hover:bg-green-dark focus:outline-none my-3">Create Account</button>
 
                
 
@@ -60,7 +176,8 @@ const Register = () => {
 
 
             </form>
-
+            <Google></Google>
+        </div>
             
         </div>
     </div>

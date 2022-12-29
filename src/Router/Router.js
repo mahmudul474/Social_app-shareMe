@@ -1,8 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
-import Main from "../Layot/Main";
+import About from "../Pagess/About/About";
+
 import Home from "../Pagess/HomPage/Home";
+ 
+import Profile from "../Shared/UserProfaile/Profile";
 import Login from "../Users/Login/Login";
 import Register from '../Users/Regiseter/Register';
+import Private from "./PrivateRoute/Private";
 
 const router=createBrowserRouter([
 {
@@ -11,11 +15,25 @@ const router=createBrowserRouter([
 },
 {
     path:"/login",
-    element:<Login></Login>
+    element:<Login></Login>, 
 },
 {
     path:"/register",
     element:<Register></Register>,
+},
+
+{
+    path:"/home",
+    element:<Private><Home></Home></Private>
+},
+{ 
+    path:"/profaile/:id",
+    loader:async({params})=>fetch(`http://localhost:5000/users/${params.id}`),
+    element:<Profile></Profile>
+},
+{
+   path:"/about",
+   element:<Private><About></About>   </Private>   
 }
 
 ])
