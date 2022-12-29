@@ -14,7 +14,7 @@ const Post = () => {
               alt="userPhoto"
               className="w-14 h-14 mr-3 object-cover rounded-full"
             /> :<img
-              src="https://ibb.co/k6wCNzp"
+              src="https://i.ibb.co/HNhj8V6/download-2.png"
               alt="avatar"
               className="w-10 h-10 mr-3  rounded-full"
             />

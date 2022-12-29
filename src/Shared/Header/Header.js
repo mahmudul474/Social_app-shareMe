@@ -95,7 +95,7 @@ const Header = () => {
                    : 
                     <>
                     <img  className="w-10  h-10 object-cover relative rounded-full"
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrh59UXvIbu9gHbxWmUeHtSz2Oe_rCM1iL-g&usqp=CAU " alt='avatar'
+                      src="https://i.ibb.co/HNhj8V6/download-2.png " alt='avatar'
                      
                     />
                     </>
