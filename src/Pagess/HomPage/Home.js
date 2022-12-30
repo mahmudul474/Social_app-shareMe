@@ -4,6 +4,7 @@ import Rightside from '../../components/righttSideComponent/Rightside';
 import Footer from '../../Shared/Footer/Footer';
 import Header from '../../Shared/Header/Header';
 import Middle from '../Middle/Middle';
+import "./Home.css"
 
 
 
@@ -40,13 +41,13 @@ const Home = () => {
           </div>
            
            {/* middel side */}
-          <div className="col-span-12 lg:col-span-6 border md:col-span-5">
+          <div className="col-span-12  lg:col-span-5 border md:col-span-4">
             <Outlet></Outlet>
             <Middle></Middle>
           </div>
             
             {/* right side */}
-          <div className="hidden lg:block lg:col-span-2">
+          <div className="hidden lg:block sticky inset-x-0 top-0  lg:col-span-2">
             <Rightside></Rightside>
           </div>
 

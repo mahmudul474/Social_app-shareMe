@@ -1,64 +1,147 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { AiOutlineLike } from "react-icons/ai";
+import { BiComment } from "react-icons/bi";
+import { RiShareForward2Fill} from "react-icons/ri";
+import { userContext } from '../../AuthContext/AuthContext';
+
+
 
 
 
 const SingelPost = ({spost}) => {
-    console.log(spost)
     const {_id
 ,        postUserName
 ,        postUser
-,        postLocation,PostUserpik,media,postTime,postTitle
+      ,PostUserpik,media,postTime,postTitle
 
 
     }=spost
-    return (
-        <div className=" p-7 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700  mb-16">
+    const {user}=useContext(userContext)
+    
+    const [count,setcount]=useState(0)
 
- <div>
-    <div className='my-2'>
+
+
+
+const handlecoment=(event)=>{
+
+event.preventDefault()
+const from=event.target;
+const comment=from.coment.value;
+
+
+const comments={
+  comentuser:user?.photoURL,
+  comentusername:user?.displayName,
+  comment:comment,
+  like:count,
+  postid:_id
+
+}
+
+
+fetch("http://localhost:5000/coment",{
+  method: "POST",
+  headers:{
+    "Content-Type":"application/json",
+  },
+  body:JSON.stringify(comments)
+})
+.then(res=>res.json())
+ .then(data=>{
+    console.log(data)}).catch(err=>{console.log(err)})
+
+
+
+
+
+}
+
+
+
+
+
+
+
+    return (
+      
+<div className='my-7 bg-slate-200 py-4 shadow-2xl'>
+
+
+<div className="card w-full  ">
+  <div className='card-title ml-3' >
+<div >
 
     <div className="flex items-center space-x-4">
-    <img className="w-10 h-10 rounded-full" src={PostUserpik} alt="" />
+    <img className="w-14 h-14 rounded-full" src={PostUserpik} alt="" />
     <div className="font-medium text-left dark:text-white">
         <div>{postUserName}</div>
         <div className="text-sm text-left text-gray-500 dark:text-gray-400">{postTime
 }</div>
     </div>
 </div>
+<h5 className="mb-2 capitalize text-xl text-left tracking-tight text-gray-900 dark:text-white">{postTitle}</h5>
+
+
     </div>
-    <h5 className="mb-2 text-xl text-left tracking-tight text-gray-900 dark:text-white">{postTitle}</h5>
- </div>     
-        {media? <img className="w-full object-cover" src={media} alt=" " />:
-        <img className="rounded-t-lg" src="/docs/images/blog/image-1.jpg" alt="" />}
-
-
-
-<div className="inline-flex  w-full  rounded-md shadow-sm" role="group">
-  
-  <button type="button" className="py-2 w-2/6 px-4 text-sm font-medium text-gray-900 bg-white rounded-l-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white text-center">
-  <span className='text-2xl w-3 text-center block'><AiOutlineLike></AiOutlineLike></span>
-  </button>
-  <button type="button" className="py-2 w-2/6 px-4 text-sm font-medium text-gray-900 bg-white rounded-l-lg border border-gray-200 hover:bg-gray-100  focus:z-10 focus:ring-2  dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
-    Comment
-  </button>
-
-
-  <button type="button" className="py-2 w-2/6 px-4 text-sm font-medium text-gray-900 bg-white rounded-r-md border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
-    Dettails
-  </button>
-</div>
     
+ </div> 
+  
+  
+  {
+    media && <img src={media} alt="Shoes" />
+  }
+</div>
+ 
 
 
 
-    </div>
+ <div className="btn-group w-full mt-4">
+
+  <button
+onClick={() => setcount(count + 1)}
+onDoubleClick={() => setcount(count
+-1)} 
+  
+   className="btn bg-white boder-none hover:bg-white text-black outline-none hover:outline-none w-2/6 "><span className='text-xl mr-1'> <AiOutlineLike></AiOutlineLike></span> Like</button>
+  <button required className="btn bg-white boder-none hover:bg-white text-black outline-none hover:outline-none w-2/6 "><span className='text-xl mr-1'> <BiComment></BiComment></span> Comment</button>
+  <button className="btn bg-white boder-none hover:bg-white text-black outline-none hover:outline-none w-2/6 "><span className='text-xl mr-1'> < RiShareForward2Fill></ RiShareForward2Fill></span> Dettails</button>
+
+
+</div>
+
+
+<form  onSubmit={handlecoment} >
+
+<div className="flex items-center justify-center space-x-4 my-5">
+  {
+    user?.photoURL &&   <img className="w-14 h-14 rounded-full mr-1" src={  user?.photoURL} alt="" />
+  }
+    <div className="flex justify-center">
+  <div className="mb-3 ">
+ <input type="text" name="coment" placeholder='write youre comment' required className='sm:w-40 lg:w-52 p-3 '/>
+ <button className="btn btn-circle btn-outline mx-4 " type='submit'>Post</button>
+ 
+  </div>
+</div>
+</div>
+</form>
+
+
+
+ </div>
+
+
+
+
+
+
     );
 };
 
 export default SingelPost;
 
 
-//className="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800"
+
 
 
