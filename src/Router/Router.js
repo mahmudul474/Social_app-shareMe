@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import About from "../Pagess/About/About";
 
 import Home from "../Pagess/HomPage/Home";
+import Myprofile from "../Pagess/MyProfile/Myprofile";
  
 import Profile from "../Shared/UserProfaile/Profile";
 import Login from "../Users/Login/Login";
@@ -34,6 +35,11 @@ const router=createBrowserRouter([
 {
    path:"/about",
    element:<Private><About></About>   </Private>   
+},
+{
+    path:"/myprofile",
+    element:<Myprofile></Myprofile>
+
 }
 
 ])

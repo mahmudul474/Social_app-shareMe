@@ -19,7 +19,7 @@ const UserAbout = ({ user,setEditabout }) => {
 
     photoURL
   } = user
-  console.log(user)
+ 
 
   return (
     <div className="p-16">

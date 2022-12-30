@@ -20,7 +20,7 @@ const Google = () => {
         loginwithgoogle(provider)
         .then((result)=>{
               const user=result.user 
-            //   saveduser(user.displayName,user.email,user.photoURL)
+              saveduser(user.displayName,user.email,user.photoURL)
 
               
 
@@ -35,34 +35,34 @@ const Google = () => {
     ///save user info monog
 
   
-    // const saveduser=(name,email,photo)=>{
-    //     const userdettailse={
-    //         name:name,
-    //         email:email,
-    //         photoURL:photo
-    //     }
-    //     console.log(typeof(userdettailse))
+    const saveduser=(name,email,photo)=>{
+        const userdettailse={
+            name:name,
+            email:email,
+            photoURL:photo
+        }
+        console.log(typeof(userdettailse))
         
-    //     fetch('http://localhost:5000/users',{
-    //         method:'POST',
-    //         headers:{
-    //             'Content-Type': 'application/json',
-    //         },
-    //         body:JSON.stringify(userdettailse),
-    //     }).then(res=>res.json())
-    //     .then(data=>{
-    //         console.log(data)
-    //        if(data.acknowledged){
-    //         toast.success("user  registered successfully",90000)
-    //         navigate("/home")
+        fetch(`http://localhost:5000/userabout/${email}`,{
+            method:'PUT',
+            headers:{
+                'Content-Type': 'application/json',
+            },
+            body:JSON.stringify(userdettailse),
+        }).then(res=>res.json())
+        .then(data=>{
+            console.log(data)
+           if(data.acknowledged){
+            toast.success("user  registered successfully",90000)
+            navigate("/home")
 
            
-    //        }
+           }
             
-    //     })
+        })
 
 
-    //      }
+         }
         
         
         

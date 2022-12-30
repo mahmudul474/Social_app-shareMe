@@ -10,12 +10,14 @@ const{createuser,uptadeUser}=useContext(userContext)
 const [eroo,setErro]=useState("")
 const navigate=useNavigate()
 
+const imagehostkey="361db61aaf2e5a08fc416c3257898005";
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
-    const imagehostkey=process.env.REACT_APP_IMBBKEY;
+ 
  
     console.log(imagehostkey)
+    
     const handleRegister=data=>{
         const image=data.photo[0]
         console.log(image)

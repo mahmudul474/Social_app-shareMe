@@ -20,19 +20,19 @@ const Home = () => {
 
             <ul>
                <li>
-                 <h1 className="text-lg font-semibold mt-5 mb-3"> <i class="fa-solid fa-user-group"></i> Friends</h1>
+                 <h1 className="text-lg font-semibold mt-5 mb-3"> <i className="fa-solid fa-user-group"></i> Friends</h1>
                </li>
 
                <li>
-                 <h1 className="text-lg font-semibold mt-5 mb-3"> <i class="fa-solid fa-calendar-minus"></i> Most Resent  </h1>
+                 <h1 className="text-lg font-semibold mt-5 mb-3"> <i className="fa-solid fa-calendar-minus"></i> Most Resent  </h1>
                </li>
 
               <li>
-                <h1 className="text-lg font-semibold mt-5 mb-3"> <i class="fa-solid fa-flag-checkered"></i> Pages </h1>
+                <h1 className="text-lg font-semibold mt-5 mb-3"> <i className="fa-solid fa-flag-checkered"></i> Pages </h1>
               </li>
 
               <li>
-                <h1  className="text-lg font-semibold mt-5 mb-3"> <i class="fa-solid fa-users-rectangle"></i> Groups</h1>
+                <h1  className="text-lg font-semibold mt-5 mb-3"> <i className="fa-solid fa-users-rectangle"></i> Groups</h1>
               </li>
                
                
