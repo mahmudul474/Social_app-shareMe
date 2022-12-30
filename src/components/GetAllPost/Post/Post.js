@@ -80,7 +80,7 @@ const  savepostDatabase=(titile,location,media,)=>{
     postTime:postTime,
   }
 
-  fetch("http://localhost:5000/post",{
+  fetch("https://social-server-sooty.vercel.app/post",{
     method: 'POST',
     headers:{
       'Content-Type': 'application/json',

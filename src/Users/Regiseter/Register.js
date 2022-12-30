@@ -89,7 +89,7 @@ const userdettailse={
     photoURL:photo
 }
 
-fetch('http://localhost:5000/users',{
+fetch('https://social-server-sooty.vercel.app/users',{
     method:'POST',
     headers:{
         'Content-Type': 'application/json',

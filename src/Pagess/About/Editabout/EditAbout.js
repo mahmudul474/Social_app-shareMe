@@ -37,7 +37,7 @@ const {title, jobtitle,phone}=aboutUserdetails
         DateOfBirth: DateOfBirth,
       }
  
-      fetch(`http://localhost:5000/userabout/${user?.email}`, {
+      fetch(`https://social-server-sooty.vercel.app/userabout/${user?.email}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

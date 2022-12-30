@@ -43,7 +43,7 @@ const Google = () => {
         }
         console.log(typeof(userdettailse))
         
-        fetch(`http://localhost:5000/userabout/${email}`,{
+        fetch(`https://social-server-sooty.vercel.app/userabout/${email}`,{
             method:'PUT',
             headers:{
                 'Content-Type': 'application/json',

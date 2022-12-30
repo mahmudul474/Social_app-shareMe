@@ -5,26 +5,10 @@ import SingelPost from './SingelPost';
 
 const AllPosts = () => {
 
-// const {data:allPosts,isLoading,refetch}=useQuery({
-//     queryKey:["allPosts"],
-//     queryFn:async()=>{
-//         const res=await fetch("http://localhost:5000/allposts")
-//         const data= await res.json();
-//         refetch()
-//         return data;
-//     }
-// })
-
-// if(isLoading){
-//     return <div>Loading...</div>
-    
-// }
-
-
 const [allPosts,setPost]=useState([])
 
 useEffect(()=>{
-   fetch("http://localhost:5000/allposts")
+   fetch("https://social-server-sooty.vercel.app/allposts")
    .then(res=>res.json())
    .then(data=>{
       setPost(data)
