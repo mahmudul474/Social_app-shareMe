@@ -9,6 +9,7 @@ const auth=getAuth(app)
 const AuthContext = ({children}) => {
  const [user,setUser]=useState(null)
  const [loading,setLoading]=useState(true)
+ 
 
 const createuser=(email,password)=>{
  setLoading(true)
@@ -64,7 +65,8 @@ unsubscribe()
   loading,
   user,
   uptadeUser,
-  loginwithgoogle
+  loginwithgoogle,
+
 
     }
          

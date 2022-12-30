@@ -1,17 +1,16 @@
 import React, { useContext } from 'react'
-import { userContext } from '../../AuthContext/AuthContext'
+import { userContext } from '../../.././AuthContext/AuthContext'
 import { BsArrowRight} from "react-icons/bs";
 import { toast } from 'react-hot-toast';
 import moment from 'moment';
 
 
-const Post = () => {
+
+const Post = ({refetch}) => {
   
-  const {user}=useContext(userContext)
+  const {user,}=useContext(userContext)
+
   
-
-
-
 
 
   const imagehostkey="361db61aaf2e5a08fc416c3257898005";
@@ -44,7 +43,7 @@ body:formdata,
 
   
   if(imageData.success){
-   
+    refetch()
     savepostDatabase(usertext,userloaction,photo)
     from.reset()
 
@@ -91,9 +90,13 @@ const  savepostDatabase=(titile,location,media,)=>{
   .then(res=>res.json())
  .then(data=>{
     console.log(data)
-
+    refetch()
+    
     if(data.acknowledged){
+     
+      refetch()
       toast.success("Post successfully")
+      
 
      }
  }).catch(erro=>console.log(erro))

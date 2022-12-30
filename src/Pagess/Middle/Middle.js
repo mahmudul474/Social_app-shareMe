@@ -1,10 +1,15 @@
 import React from 'react';
-import Post from '../../components/Post/Post';
+import AllPosts from '../../components/GetAllPost/AllPosts';
+
+
 
 const Middle = () => {
     return (
         <div>
-            <Post></Post>
+           
+           <div>
+            <AllPosts></AllPosts>
+           </div>
         </div>
     );
 };

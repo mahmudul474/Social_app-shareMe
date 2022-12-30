@@ -1,7 +1,8 @@
 import React from 'react';
-import ShowPost from '../../components/ShowPost/ShowPost';
+
 
 const Footer = () => {
+   
     return (
         <footer className="p-4 bg-white rounded-lg shadow md:px-6 md:py-8 dark:bg-gray-900">
         
