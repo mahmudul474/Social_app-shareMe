@@ -72,8 +72,8 @@ const Google = () => {
 
     
     return (
-    <div>
-           <button onClick={handlelogin} className="btn btn-wide"><span className='mr-4 text-2xl'> <FcGoogle></FcGoogle></span>  Google</button>
+    <div className='flex justify-center'>
+           <button onClick={handlelogin} className="btn btn-wide  flex justify-center items-center"><span className='mr-4 text-2xl'> <FcGoogle></FcGoogle></span>  Google</button>
        
     </div>
      

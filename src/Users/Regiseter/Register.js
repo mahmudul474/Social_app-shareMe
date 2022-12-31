@@ -116,9 +116,9 @@ fetch('https://social-server-sooty.vercel.app/users',{
 
 
     return (
-        <div className="bg-slate-600 min-h-screen flex flex-col bg-base-300">
-        <div className="container max-w-lg mx-auto flex-1 flex flex-col items-center justify-center px-2">
-        <div className='bg-white lg:w-[500px] p-5'>
+        <div className="bg-slate-600 min-h-screen  rounded-xl flex flex-col bg-base-300">
+        <div className="container max-w-lg rounded-md mx-auto flex-1 flex flex-col items-center justify-center px-2">
+        <div className='bg-white lg:w-[500px] rounded-lg p-5'>
         <form   onSubmit={ handleSubmit( handleRegister)} 
              className="  px-6 rounded   text-black w-full">
                 <h1 className=" text-3xl text-center">Register</h1>
@@ -167,7 +167,7 @@ fetch('https://social-server-sooty.vercel.app/users',{
                 />
 {errors.password && <p className='text-red-500 text-left'>{errors.password.message}</p>}
 
-                <button type="submit" className=" s:w-full text-center py-3 rounded btn btn-wide text-white hover:bg-green-dark focus:outline-none my-3">Create Account</button>
+                <button type="submit" className=" s:w-full text-center m-auto block py-3 rounded btn btn-wide text-white hover:bg-green-dark focus:outline-none my-3">Create Account</button>
 
                
 
