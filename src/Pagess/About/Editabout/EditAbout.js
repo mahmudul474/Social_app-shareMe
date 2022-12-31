@@ -1,8 +1,8 @@
 import { toast } from 'react-hot-toast'
 
-const EditAbout = ({ user,aboutUserdetails, refetch }) => {
+const EditAbout = ({ user, refetch }) => {
 
-const {title, jobtitle,phone}=aboutUserdetails
+
 
 
   const handleeditAbout = (event) => {
@@ -26,7 +26,7 @@ const {title, jobtitle,phone}=aboutUserdetails
 
       const userAbout = {
         
-        title: title,
+        title: title   ,
         jobtitle: jobtitle,
         phone: phone,
         profileEmail: profileEmail,
@@ -47,9 +47,12 @@ const {title, jobtitle,phone}=aboutUserdetails
       })
         .then((res) => res.json())
         .then((data) => {
+         
           if (data.acknowledged) {
-            toast.success('user  uptade successfully')
+            toast.success('  Edit About successfully')
             refetch()
+            from.reset()
+           
           }
         })
        .catch((err) => {
@@ -80,6 +83,7 @@ const {title, jobtitle,phone}=aboutUserdetails
 
               <input
                 type="text"
+                
                 name="username"
                 id="name"
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -99,7 +103,7 @@ const {title, jobtitle,phone}=aboutUserdetails
                 name="DateOfBirth"
                 id="name"
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder="  "
+                placeholder="  " 
               />
               <label
    
@@ -110,6 +114,7 @@ const {title, jobtitle,phone}=aboutUserdetails
             </div>
             <div className="relative z-0 mb-6 w-full group">
               <input
+               
                 type="text"
                 name="title"
                 id="name"
@@ -128,6 +133,7 @@ const {title, jobtitle,phone}=aboutUserdetails
               <input
                 type="text"
                 name="jobtitle"
+            
                 id="floating_company"
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
@@ -143,6 +149,7 @@ const {title, jobtitle,phone}=aboutUserdetails
 
             <div className="relative z-0 mb-6 w-full group">
               <input
+             
                 type="tel"
                 name="phone"
                 id="floating_phone"
@@ -158,6 +165,7 @@ const {title, jobtitle,phone}=aboutUserdetails
             </div>
             <div className="relative z-0 mb-6 w-full group">
               <input
+           
                 type="email"
                 name="email"
                 id="floating_email"
@@ -174,6 +182,7 @@ const {title, jobtitle,phone}=aboutUserdetails
             <div className="relative z-0 mb-6 w-full ">
               <input
                 type="eduction"
+            
                 name="education"
                 id="eduction"
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -191,6 +200,7 @@ const {title, jobtitle,phone}=aboutUserdetails
               <input
                 type="text"
                 name="curentcity"
+             
                 id="curentcity"
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
@@ -210,6 +220,7 @@ const {title, jobtitle,phone}=aboutUserdetails
                 </label>
               </p>
               <textarea
+                
                 className="border-gray-700 p-2 border"
                 name="about"
                 id="w3review"
@@ -219,20 +230,23 @@ const {title, jobtitle,phone}=aboutUserdetails
               ></textarea>
             </>
 
-            <div className="modal-action">
-              <label htmlFor="edtiabout-modal" className="btn" type="submit">
-                Yay!
-              </label>
-            </div>
-
+            
+            <div className='flex justify-center my-3 items-center'>
+              
             <button
-              htmlFor="edtiabout-modal"
+             
               type="submit"
               className="btn
-  text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+  text-white bg-blue-700 mr-4 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
-              Submit
+              Uptade
             </button>
+            <label htmlFor="edtiabout-modal" className="btn" t>
+                close
+              </label>
+              </div>
+            
+
           </form>
         </div>
       </div>

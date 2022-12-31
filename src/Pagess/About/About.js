@@ -7,7 +7,7 @@ import { FiEdit } from "react-icons/fi";
 import {ImLocation2 } from "react-icons/im";
 import {MdCastForEducation ,MdTitle,MdEmail} from "react-icons/md";
 import {CgWorkAlt} from "react-icons/cg";
-import {BsFillTelephoneForwardFill} from "react-icons/bs";
+import {BsCalendarDate, BsFillTelephoneForwardFill} from "react-icons/bs";
  
 
 
@@ -102,10 +102,13 @@ if(isLoading){
             <span className=' text-xl mr-1'><MdTitle></MdTitle></span> 
             {aboutUserdetails?.title?  aboutUserdetails?.title:"set title on edit about"}
           </h1>
-          
-          <p className="mt-8  flex justify-center items-center text-gray-500"> <span className='text-xl mr-1'><CgWorkAlt></CgWorkAlt></span>
-            {aboutUserdetails?.locationfrom ? aboutUserdetails?.locationfrom :"write job title on edit about"}
+          <p className="mt-8  flex justify-center items-center text-gray-500"> <span className='text-xl mr-1'><BsCalendarDate></BsCalendarDate></span>
+            {aboutUserdetails?.jobtitle? aboutUserdetails?.jobtitle:"write job type about"}
           </p>
+          <p className="mt-8  flex justify-center items-center text-gray-500"> <span className='text-xl mr-1'><BsCalendarDate></BsCalendarDate></span>
+            {aboutUserdetails?.DateOfBirth? aboutUserdetails?.DateOfBirth:"write DateOf Birth about"}
+          </p>
+          
           <p className="mt-2 flex justify-center items-center text-gray-500"><span className='text-xl mr-1'><MdCastForEducation></MdCastForEducation></span>{aboutUserdetails?.eduction? aboutUserdetails?.eduction:"write education edit about"}</p>
 
           <p className="font-light flex justify-center items-center  text-gray-600 mt-3"><span className=' text-xl mr-1'><ImLocation2></ImLocation2></span>{aboutUserdetails?.curentcity?  aboutUserdetails?.curentcity:"write localtion on edit about"}</p>
