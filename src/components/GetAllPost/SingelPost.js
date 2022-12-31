@@ -1,9 +1,10 @@
 import { useQuery } from '@tanstack/react-query'
 import moment from 'moment'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { AiOutlineLike } from 'react-icons/ai'
 import { BiComment } from 'react-icons/bi'
 import { RiShareForward2Fill } from 'react-icons/ri'
+import Likeapi from '../../Api/Likeapi'
 import { userContext } from '../../AuthContext/AuthContext'
 import Comment from './Comment'
 
@@ -20,24 +21,26 @@ const SingelPost = ({ spost }) => {
 
   const { user } = useContext(userContext)
   const [commentlength, setCommentslegth] = useState(0)
-  console.log(commentlength.length)
-
-  const [like, setLike] = useState(0)
+  const [likes, setLikes] = useState([])
+  
+ 
   const handlecoment = (event) => {
     event.preventDefault()
     const from = event.target
-    const comment = from.coment.value
+    const comment = from.comment.value
     const commentTime = moment().calendar()
 
     const comments = {
       comentuser: user?.photoURL,
       comentusername: user?.displayName,
       comment: comment,
-      
       postid: _id,
       commentTime: commentTime,
     }
-    //post comment to server
+   
+//post comment database
+
+
     fetch('http://localhost:5000/coment', {
       method: 'POST',
       headers: {
@@ -48,7 +51,8 @@ const SingelPost = ({ spost }) => {
       .then((res) => res.json())
       .then((data) => {
         refetch()
-        console.log(data)
+        from.reset()
+        
       })
       .catch((err) => {
         console.log(err)
@@ -56,7 +60,7 @@ const SingelPost = ({ spost }) => {
   }
 
 
-///get alll coments from database
+// get all comments fromsever
 
   const { data: getcomments, isLoading, refetch } = useQuery({
     queryKey: ['getcomments', _id],
@@ -67,6 +71,10 @@ const SingelPost = ({ spost }) => {
       return data
     },
   })
+
+
+
+
 
   if (isLoading) {
     return <div>Loading...</div>
@@ -99,22 +107,17 @@ const SingelPost = ({ spost }) => {
         {media && <img src={media} alt="Shoes" />}
       </div>
 
-      <div>
-        {commentlength.length && <p>Commnets:{commentlength.length}</p>}
+      <div className='flex justify-between mx-2'>
+
+        <p>{likes.length ===0 ?  "" : <span className='capitalize font-bold '>{likes.length} Pepole likes </span>}</p>
+       <p> {commentlength.length ===0 ? "":<span className='capitalize font-bold'>Commnets:{commentlength.length}</span>}</p>
+       
       </div>
 
-      <div className="btn-group w-full mt-4">
-        <button
-          onClick={() => setLike(like + 1)}
-          onDoubleClick={() => setLike(like - 1)}
-          className="btn bg-white boder-none hover:bg-white text-black outline-none hover:outline-none w-2/6 "
-        >
-          <span className="text-xl mr-1">
-            {' '}
-            <AiOutlineLike></AiOutlineLike>
-          </span>{' '}
-          Like
-        </button>
+      <div className="btn-group w-full ">
+       <Likeapi postId={_id} 
+       setLikes={setLikes}
+       ></Likeapi>
         <button
           required
           className="btn bg-white boder-none hover:bg-white text-black outline-none hover:outline-none w-2/6 "
@@ -147,13 +150,14 @@ const SingelPost = ({ spost }) => {
           <div className="relative w-full">
             <input
               type="text"
+              name="comment"
               className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
               placeholder="Type youre comments"
               required
             />
             <button
               type="submit"
-              className="absolute top-0 right-0 p-2.5 text-sm font-medium text-white bg-slate-800 rounded-r-lg     "
+              className="absolute top-0 right-0 mr-1 p-2.5 text-sm font-medium text-white bg-slate-800 rounded-r-lg     "
             >
               
                  
