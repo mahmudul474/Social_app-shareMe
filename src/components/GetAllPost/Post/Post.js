@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { userContext } from '../../.././AuthContext/AuthContext'
 import { BsArrowRight } from 'react-icons/bs'
 import { toast } from 'react-hot-toast'
@@ -13,7 +13,6 @@ const Post = () => {
     event.preventDefault()
 
     const from = event.target
-    const userloaction = from.userloaction.value
     const usertext = from.usertext.value
 
     const usermedia = from.usermedia.files[0]
@@ -28,22 +27,32 @@ const Post = () => {
     })
       .then((res) => res.json())
       .then((imageData) => {
-        const photo = imageData.data.display_url
+        const photo = imageData.data.display_url;
+        console.log(photo)
 
         if (imageData.success) {
-          savepostDatabase(usertext, userloaction, photo)
+          savepostDatabase(usertext, photo)
           from.reset()
         }
       })
       .catch((ero) => {
         console.log(ero)
-        savepostDatabase(usertext, userloaction)
+        savepostDatabase(usertext)
         from.reset()
       })
   }
 
-  const savepostDatabase = (titile, location, media) => {
+
+
+ 
+
+
+
+
+  const savepostDatabase = (titile,  media) => {
     const postTime = moment().format('lll')
+
+console.log(media)
 
     const createPost = {
       postUser: user?.email,
@@ -51,7 +60,7 @@ const Post = () => {
       PostUserpik: user?.photoURL,
       media: media,
       postTitle: titile,
-      postLocation: location,
+     
       postTime: postTime,
     }
 
@@ -73,11 +82,14 @@ const Post = () => {
       .catch((erro) => console.log(erro))
   }
 
+
+ 
+
   return (
     <div>
-      <form onSubmit={handlePost} className="bg-base-300 py-7 rounded-xl">
-        <div className="parent flex flex-col justify-center items-center ">
-          <div className="flex justify-center items-center">
+      <form onSubmit={handlePost} className="bg-base-300 py-7 rounded-sm">
+        <div className="  flex flex-col  justify-center ">
+          <div className="flex mx-2 items-center w-full">
             {user?.photoURL ? (
               <img
                 src={user?.photoURL}
@@ -93,45 +105,43 @@ const Post = () => {
               />
             )}
 
-            <textarea
-              required
-              name="usertext"
-              className="border  lg:w-[500px] md:w-[400px] sm:w-[400px] border-black rounded-lg p-3  capitalize"
-              placeholder="what is youre mind??"
-            />
-          </div>
+             
 
-          <div className="flex items-center my-6 px-2 sm:flex-row">
-            <h3 className=" flex  justify-center items-center text-lg capitalize font-bold  ">
-              Add youre photo media{' '}
-              <span className="ml-3 text-xl">
-                <BsArrowRight></BsArrowRight>
-              </span>
-            </h3>
+<>
+    <div className="flex items-center px-3 py-2 rounded-lg mr-3 w-full bg-gray-50 dark:bg-gray-700">
 
-            <div className="flex items-center my-4">
-              <label htmlFor="photo"></label>
-              <input
-                type="file"
-                id="photo"
-                name="usermedia"
-                className="  border-none"
-              />
-              <p>
-                <input
-                  type="text"
-                  name="userloaction"
-                  placeholder="location ????? "
-                  className="border p-2 capitalize  lg:w-[260px]"
-                />
-              </p>
-            </div>
+
+
+                <label className=" flex flex-col items-center px-4 py-6    cursor-pointer ">
+                  <svg aria-hidden="true" className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" /></svg>
+        
+   
+        <input type="file" name="usermedia" className="hidden" />
+    </label>
+
+
+
+
+
+
+
+
+      
+        
+        <textarea id="chat" name='usertext' required rows={1} className="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="write something ....?" />
+            <button type="submit" className="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600">
+            <svg aria-hidden="true" className="w-6 h-6 rotate-90" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" /></svg>
+            
+        </button>
+    </div></>
+
+
+           
           </div>
         </div>
 
-        <button type="submit" className="btn no-animation px-14">
-          Post{' '}
-        </button>
+       
+         
       </form>
     </div>
   )
@@ -139,4 +149,4 @@ const Post = () => {
 
 export default Post
 
-/////https://www.youtube.com/watch?v=a8KruvMkEtY
+

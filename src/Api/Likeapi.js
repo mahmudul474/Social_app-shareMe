@@ -50,7 +50,7 @@ const {data:likes=[],refetch}=useQuery({
 
     return  <button
           onClick={handleLike}
-    className="btn bg-white boder-none hover:bg-white text-black outline-none hover:outline-none w-2/6 "
+    className="btn bg-gray-300 boder-none hover:bg-white text-black border-none outline-none   w-2/6 "
   >
     <span className="text-xl mr-1">
 

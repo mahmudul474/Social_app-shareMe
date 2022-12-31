@@ -107,20 +107,20 @@ const SingelPost = ({ spost }) => {
         {media && <img src={media} alt="Shoes" />}
       </div>
 
-      <div className='flex justify-between mx-2'>
+      <div className='flex justify-between mx-3'>
 
-        <p>{likes.length ===0 ?  "" : <span className='capitalize font-bold '>{likes.length} Pepole likes </span>}</p>
-       <p> {commentlength.length ===0 ? "":<span className='capitalize font-bold'>Commnets:{commentlength.length}</span>}</p>
+        <p>{likes.length ===0 ?  "" : <span className='capitalize'>{likes.length} Pepole likes </span>}</p>
+       <p> {commentlength.length ===0 ? "":<span className='capitalize '>Commnets  {commentlength.length}</span>}</p>
        
       </div>
 
-      <div className="btn-group w-full ">
+      <div className="btn-group w-full px-2 outline-none border-none ">
        <Likeapi postId={_id} 
        setLikes={setLikes}
        ></Likeapi>
         <button
           required
-          className="btn bg-white boder-none hover:bg-white text-black outline-none hover:outline-none w-2/6 "
+          className="flex justify-center items-center  bg-gray-300 boder-none hover:bg-white boder-none  text-black outline-none hover:outline-none w-2/6 "
         >
           <span className="text-xl mr-1">
             {' '}
@@ -128,9 +128,9 @@ const SingelPost = ({ spost }) => {
           </span>{' '}
           Comment
         </button>
-        <button className="btn bg-white boder-none hover:bg-white text-black outline-none hover:outline-none w-2/6 ">
+        <button className=" flex justify-center bg-gray-300 boder-none hover:bg-white  items-center  boder-nonetext-black outline-none hover:outline-none w-2/6  ">
           <span className="text-xl mr-1">
-            {' '}
+         
             <RiShareForward2Fill></RiShareForward2Fill>
           </span>{' '}
           Dettails
@@ -147,24 +147,17 @@ const SingelPost = ({ spost }) => {
             />
           )}
 
-          <div className="relative w-full">
-            <input
-              type="text"
-              name="comment"
-              className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
-              placeholder="Type youre comments"
-              required
-            />
-            <button
-              type="submit"
-              className="absolute top-0 right-0 mr-1 p-2.5 text-sm font-medium text-white bg-slate-800 rounded-r-lg     "
-            >
-              
-                 
-              Post
-           
-            </button>
-          </div>
+      
+    <div className="flex items-center w-full px-3 py-2 rounded-lg bg-gray-50 dark:bg-gray-700 mr-2">
+       
+        
+        <textarea  name='comment' id="chat" required rows={1} className="block mx-4 p-2.5 w-full  text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Type Your Comment..." />
+            <button type="submit" className="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600">
+            <svg aria-hidden="true" className="w-6 h-6 rotate-90" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" /></svg>
+            
+        </button>
+    </div>
+
         </div>
       </form>
 
