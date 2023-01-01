@@ -51,7 +51,7 @@ const Myprofile = () => {
           <div className="relative">
          
             <div className="w-48 overflow-hidden h-48 bg-indigo-100 mx-auto rounded-full shadow-2xl absolute inset-x-0 top-0 -mt-24 flex items-center justify-center text-indigo-500">
-             {/* <img src={photoURL} alt="" className='rounded-full object-cover ' /> */}
+             <img src={user?.photoURL} alt="" className='rounded-full object-cover ' />
             </div>
           </div>
           <div className="space-x-8 flex justify-between mt-32 md:mt-0 md:justify-center">
@@ -68,7 +68,7 @@ const Myprofile = () => {
         <div className="mt-20 text-center border-b pb-12">
           
           <h1 className="text-4xl font-medium text-gray-700">
-            {/* {displayName} <span className="font-light text-gray-500">27</span> */}
+            {user?.displayName} <span className="font-light text-gray-500">27</span>
           </h1>
          
          

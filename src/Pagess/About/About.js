@@ -2,14 +2,12 @@ import { useQuery } from '@tanstack/react-query'
 import React, { useContext, useState } from 'react'
 import { userContext } from '../../AuthContext/AuthContext'
 import EditAbout from './Editabout/EditAbout'
-
 import { FiEdit } from "react-icons/fi";
 import {ImLocation2 } from "react-icons/im";
-import {MdCastForEducation ,MdTitle,MdEmail} from "react-icons/md";
-import {CgWorkAlt} from "react-icons/cg";
+import {MdCastForEducation ,MdEmail} from "react-icons/md";
+
 import {BsCalendarDate, BsFillTelephoneForwardFill} from "react-icons/bs";
  
-
 
 
 
