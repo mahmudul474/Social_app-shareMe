@@ -5,15 +5,16 @@ import { userContext } from '../../AuthContext/AuthContext'
 import Post from "../../components/GetAllPost/Post/Post"
 import SingelPost from "../../components/GetAllPost/SingelPost"
 import { useQuery } from '@tanstack/react-query'
+import { FiEdit } from 'react-icons/fi'
 
 
 const Myprofile = () => {
   const { user } = useContext(userContext)
- 
-  
-  
+ const [media,setmedia]=useState({})
 
-  
+  console.log(media)
+
+ 
   
 
   const {data:myposts=[],isLoading,refetch } = useQuery({
@@ -59,22 +60,22 @@ const Myprofile = () => {
               
               Connect
             </button>
-            <button className="text-white py-2 px-4 uppercase rounded bg-gray-700 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
-              
-              Message
-            </button>
+             <label
+
+            
+          htmlFor="edtiabout-modal" className="p-3  flex btn items-center   text-white w-28  "><span><FiEdit></FiEdit></span>Edit about</label>
           </div>
         </div>
         <div className="mt-20 text-center border-b pb-12">
           
           <h1 className="text-4xl font-medium text-gray-700">
-            {user?.displayName} <span className="font-light text-gray-500">27</span>
+            {user?.displayName} 
           </h1>
          
-         
+        
         </div>
         
- <div className='grid lg:grid-cols-3 px-32 '>
+ <div className='grid lg:grid-cols-4  '>
           <div className='col-span-1'> <About></About></div>
             <div className='col-span-2'>
               <div><Post refetch={refetch }></Post></div>    
@@ -82,12 +83,36 @@ const Myprofile = () => {
               
               {
               
-              [...myposts].reverse().map(post=><SingelPost spost={post} key={post._id}></SingelPost>)
+              [...myposts].reverse().map(post=><SingelPost spost={post}  setmedia={ setmedia} key={post._id}></SingelPost>)
               
               }
- 
+             
 
-          </div>
+            </div>
+            
+
+            <div className='col-span-1'>
+              <div className="container mx-auto px-4"> 
+                
+      
+     
+                
+      <section className="py-8 px-4">
+        <div className="flex flex-wrap -mx-4 -mb-8">
+          <div className="md:w-1/4 px-4 mb-8"><img className="rounded shadow-md" src="https://source.unsplash.com/random/1280x720" alt="" /></div>
+          <div className="md:w-1/4 px-4 mb-8"><img className="rounded shadow-md" src="https://source.unsplash.com/random/1280x720" alt="" /></div>
+          <div className="md:w-1/4 px-4 mb-8"><img className="rounded shadow-md" src="https://source.unsplash.com/random/1280x720" alt="" /></div>
+          <div className="md:w-1/4 px-4 mb-8"><img className="rounded shadow-md" src="https://source.unsplash.com/random/1280x720" alt="" /></div>
+          <div className="md:w-1/4 px-4 mb-8"><img className="rounded shadow-md" src="https://source.unsplash.com/random/1280x720" alt="" /></div>
+          <div className="md:w-1/4 px-4 mb-8"><img className="rounded shadow-md" src="https://source.unsplash.com/random/1280x720" alt="" /></div>
+          <div className="md:w-1/4 px-4 mb-8"><img className="rounded shadow-md" src="https://source.unsplash.com/random/1280x720" alt="" /></div>
+          <div className="md:w-1/4 px-4 mb-8"><img className="rounded shadow-md" src="https://source.unsplash.com/random/1280x720" alt="" /></div>
+        </div>
+      </section>
+    </div>
+              
+  </div>
+
               </div>
 
           

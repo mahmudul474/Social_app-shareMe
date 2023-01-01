@@ -21,6 +21,7 @@ const SingelPost = ({ spost }) => {
     postTime,
     postTitle,
   } = spost
+ 
 
   const { user } = useContext(userContext)
   const [commentlength, setCommentslegth] = useState(0)
@@ -83,7 +84,7 @@ const SingelPost = ({ spost }) => {
             <div className="flex items-center space-x-4">
               <img
                 className="w-14 h-14 rounded-full"
-                src={PostUserpik}
+                src={PostUserpik}  
                 alt=""
               />
               <div className="font-medium text-left dark:text-white">

@@ -16,7 +16,10 @@ const savelike=()=>{
         likerusername:user.displayName,
         postid:postId,
         likeuserPhoto:user.photoURL
-    }
+  }
+  
+
+  
 fetch(`https://social-server-sooty.vercel.app/likes`,{
     method:'POST',
     headers:{

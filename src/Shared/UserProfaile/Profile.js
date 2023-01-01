@@ -1,37 +1,56 @@
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
+import Post from '../../components/GetAllPost/Post/Post';
+import SingelPost from '../../components/GetAllPost/SingelPost';
+import Rightside from '../../components/righttSideComponent/Rightside';
+import About from '../../Pagess/About/About';
 import Header from '../Header/Header';
+import UserAbout from './UserAbout';
 
 const Profile = () => {
-    const profile=useLoaderData()
-    console.log(profile)
-const {photoURL}=profile
+  
+    const profile = useLoaderData()
+  console.log(profile)
+    
+  const { photoURL, email, name, profileEmail } = profile;
+  
 
-    return (
-      <div >
-        <Header></Header>
+
+
+
+  const {data:userpost=[],isLoading,refetch } = useQuery({
+    queryKey: ["userpost",  email],
+    queryFn: async () => {
+      const res = await fetch(`http://localhost:5000/posts?email=${email}`)
+      const data = await res.json()
+      return data
+
+    }
+  })
+
+
+
+
+  if (isLoading) {
+  return <div> lodding......</div>
+}
+
+
+
+  return (
+      
+    <div><Header></Header>
+     <div className='mt-24 px-10'>
         
-      <div className="p-8 bg-white shadow mt-24  ">
+        
+      <div className="p-8 bg-white shadow  px-16 ">
        
         <div className="grid grid-cols-1 lg:grid-cols-3 ">
           
           <div className="grid grid-cols-3 text-center order-last md:order-first mt-20 md:mt-0">
           
-            {/* <div>
-          
-              <p className="font-bold text-gray-700 text-xl">22</p>
-              <p className="text-gray-400">Friends</p>
-            </div>
-            <div>
-             
-              <p className="font-bold text-gray-700 text-xl">10</p>
-              <p className="text-gray-400">Photos</p>
-            </div>
-            <div>
-              
-              <p className="font-bold text-gray-700 text-xl">89</p>
-              <p className="text-gray-400">Comments</p>
-            </div> */}
+            
           </div>
           <div className="relative">
          
@@ -53,21 +72,43 @@ const {photoURL}=profile
         <div className="mt-20 text-center border-b pb-12">
           
           <h1 className="text-4xl font-medium text-gray-700">
-            Jessica Jones, <span className="font-light text-gray-500">27</span>
+              {name}
           </h1>
          
          
         </div>
         
- <div className='grid lg:grid-cols-3 py-20'>
-          <div className='col-span-1'> </div>
-          <div className='col-span-2'>2</div>
+ <div className='grid lg:grid-cols-4 py-20'>
+            <div className='col-span-1'>
+            <UserAbout  profile={profile}></UserAbout> 
+            
+            </div>
+            <div className='col-span-2'>
+             
+              <div>
+                {
+              
+              [...userpost].reverse().map(post=><SingelPost spost={post} key={post._id}></SingelPost>)
+              
+              }
+              </div>
+              
+            </div>
+            
+
+            <div className='col-span-1'>
+              <Rightside></Rightside>
+             </div>
+
+
               </div>
 
         </div>
        
 
     </div>
+    </div>
+     
     );
 };
 

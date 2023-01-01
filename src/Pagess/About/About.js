@@ -21,7 +21,7 @@ const [editabout,setEditabout]=useState()
 const { data:aboutUserdetails,isLoading,refetch} = useQuery({
   queryKey: ['aboutUserdetailsdetails',],
   queryFn:async () =>{
-        const res=await  fetch(`https://social-server-sooty.vercel.app/userabout?email=${user?.email}`)
+        const res=await  fetch(`http://localhost:5000/user/about/${user?.email}`)
         const data = await res.json();
        
         return data
@@ -53,7 +53,8 @@ if(isLoading){
  <div className=" ">
       <div className="  bg-white  ">
         
-        <div className='flex justify-end m-3'>  <label
+        <div className='hidden'>  <label
+          
 
             onClick={()=>setEditabout(user)}
           htmlFor="edtiabout-modal" className="p-3  flex btn items-center   text-white w-28  "><span><FiEdit></FiEdit></span>Edit about</label></div>
