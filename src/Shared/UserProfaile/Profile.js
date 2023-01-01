@@ -24,7 +24,7 @@ const Profile = () => {
   const {data:userpost=[],isLoading,refetch } = useQuery({
     queryKey: ["userpost",  email],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/posts?email=${email}`)
+      const res = await fetch(`https://social-server-sooty.vercel.app/posts?email=${email}`)
       const data = await res.json()
       setmedia(data)
       return data
