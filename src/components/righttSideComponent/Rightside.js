@@ -22,7 +22,7 @@ console.log(allusers)
             <h3 className='text-left p-6  text-xl capitalize font-bold'>Friends</h3>
             <div>
                 {
-                    allusers.map(user=><User key={user._id} user={user}></User>)
+                    allusers?.map(user=><User key={user._id} user={user}></User>)
                 }
 
             </div>

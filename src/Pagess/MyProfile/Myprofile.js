@@ -1,15 +1,41 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import About from '../About/About'
 import Header from "../../Shared/Header/Header"
 import { userContext } from '../../AuthContext/AuthContext'
 import Post from "../../components/GetAllPost/Post/Post"
 import SingelPost from "../../components/GetAllPost/SingelPost"
-import MyPost from './MyPost/MyPost'
+import { useQuery } from '@tanstack/react-query'
 
 
 const Myprofile = () => {
   const { user } = useContext(userContext)
-  const{photoURL,displayName}=user
+ 
+  
+  
+
+  
+  
+
+  const {data:myposts=[],isLoading,refetch } = useQuery({
+    queryKey: ["myposts", user?.email],
+    queryFn: async () => {
+      const res = await fetch(`http://localhost:5000/posts?email=${user?.email}`)
+      const data = await res.json()
+      return data
+
+    }
+  })
+
+
+
+
+  if (isLoading) {
+  return <div> lodding......</div>
+}
+
+
+
+
     return (
       <div >
         <Header></Header>
@@ -25,7 +51,7 @@ const Myprofile = () => {
           <div className="relative">
          
             <div className="w-48 overflow-hidden h-48 bg-indigo-100 mx-auto rounded-full shadow-2xl absolute inset-x-0 top-0 -mt-24 flex items-center justify-center text-indigo-500">
-             <img src={photoURL} alt="" className='rounded-full object-cover ' />
+             {/* <img src={photoURL} alt="" className='rounded-full object-cover ' /> */}
             </div>
           </div>
           <div className="space-x-8 flex justify-between mt-32 md:mt-0 md:justify-center">
@@ -42,7 +68,7 @@ const Myprofile = () => {
         <div className="mt-20 text-center border-b pb-12">
           
           <h1 className="text-4xl font-medium text-gray-700">
-            Jessica Jones, <span className="font-light text-gray-500">27</span>
+            {/* {displayName} <span className="font-light text-gray-500">27</span> */}
           </h1>
          
          
@@ -51,16 +77,21 @@ const Myprofile = () => {
  <div className='grid lg:grid-cols-3 px-32 '>
           <div className='col-span-1'> <About></About></div>
             <div className='col-span-2'>
-              <div><Post></Post></div>    
-              <div>
-               
-                 <MyPost></MyPost>
+              <div><Post refetch={refetch }></Post></div>    
+                
               
-              </div>   
+              {
+              
+              [...myposts].reverse().map(post=><SingelPost spost={post} key={post._id}></SingelPost>)
+              
+              }
  
 
           </div>
               </div>
+
+          
+
 
         </div>
        

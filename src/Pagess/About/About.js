@@ -16,7 +16,7 @@ import {BsCalendarDate, BsFillTelephoneForwardFill} from "react-icons/bs";
 const About = () => {
 const {user}=useContext(userContext)
 const [editabout,setEditabout]=useState()
-const {photoURL,displayName}=user
+
 
  
 
@@ -54,25 +54,23 @@ if(isLoading){
 
  <div className=" ">
       <div className="  bg-white  ">
-        <label
+        
+        <div className='flex justify-end m-3'>  <label
 
             onClick={()=>setEditabout(user)}
-          htmlFor="edtiabout-modal" className="p-3  flex btn items-center text-white  "><span><FiEdit></FiEdit></span>Edit about</label>
-        
+          htmlFor="edtiabout-modal" className="p-3  flex btn items-center   text-white w-28  "><span><FiEdit></FiEdit></span>Edit about</label></div>
        
          
         <div className=" text-center border-b pb-12">
           
-      
-          <h1  className=" flex justify-center items-center text-xl font-medium text-gray-700">
-            <span className=' text-xl mr-1'><MdTitle></MdTitle></span> 
-            {aboutUserdetails?.title?  aboutUserdetails?.title:"set title on edit about"}
-          </h1>
+     
+          
+
           <p className="mt-8  flex justify-center items-center text-gray-500"> <span className='text-xl mr-1'><BsCalendarDate></BsCalendarDate></span>
-            {aboutUserdetails?.jobtitle? aboutUserdetails?.jobtitle:"write job type about"}
+            {aboutUserdetails?.jobtitle? aboutUserdetails?.jobtitle:"write job type on edit about"}
           </p>
           <p className="mt-8  flex justify-center items-center text-gray-500"> <span className='text-xl mr-1'><BsCalendarDate></BsCalendarDate></span>
-            {aboutUserdetails?.DateOfBirth? aboutUserdetails?.DateOfBirth:"write DateOf Birth about"}
+            {aboutUserdetails?.DateOfBirth? aboutUserdetails?.DateOfBirth:"write DateOf Birth on edit about"}
           </p>
           
           <p className="mt-2 flex justify-center items-center text-gray-500"><span className='text-xl mr-1'><MdCastForEducation></MdCastForEducation></span>{aboutUserdetails?.eduction? aboutUserdetails?.eduction:"write education edit about"}</p>
@@ -81,12 +79,20 @@ if(isLoading){
 
 
           
-        <div className=''><p className="font-light flex justify-center items-center  mr-2 text-gray-600 mt-3"><span className=' text-xl mr-1'><BsFillTelephoneForwardFill></BsFillTelephoneForwardFill></span>{aboutUserdetails.phone? aboutUserdetails.phone:"set phone number on edti about"}</p>
-            <p className="font-light flex justify-center items-center  text-gray-600 mt-3"><span className=' text-xl mr-1'><MdEmail></MdEmail></span>{aboutUserdetails?.profileEmail ? aboutUserdetails?.profileEmail : "set youre email on edit about"}</p></div>
-          
-        
+        <div className=''><p className="font-light flex justify-center items-center  mr-2 text-gray-600 mt-3"><span className=' text-xl mr-1'><BsFillTelephoneForwardFill></BsFillTelephoneForwardFill></span>{aboutUserdetails?.phone? aboutUserdetails.phone:"set phone number on edti about"}</p>
+            <p className="font-light flex justify-center items-center  text-gray-600 mt-3"><span className=' text-xl mr-1'><MdEmail></MdEmail></span>{aboutUserdetails?.profileEmail ? aboutUserdetails?.profileEmail : "set youre email on edit about"}</p>
+
              
-        
+            
+          
+          
+          </div>
+          
+      
+             
+           
+          
+          
 
           
         </div>
@@ -101,6 +107,13 @@ if(isLoading){
         
         </div>
       </div>
+
+
+      
+ 
+
+
+
 
 
       <EditAbout   

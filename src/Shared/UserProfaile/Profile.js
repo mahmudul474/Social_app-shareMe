@@ -1,6 +1,5 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
-import About from '../../Pagess/About/About';
 import Header from '../Header/Header';
 
 const Profile = () => {
@@ -61,7 +60,7 @@ const {photoURL}=profile
         </div>
         
  <div className='grid lg:grid-cols-3 py-20'>
-          <div className='col-span-1'> <About></About></div>
+          <div className='col-span-1'> </div>
           <div className='col-span-2'>2</div>
               </div>
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Comment = ({scomment}) => {
+const ComentCart = ({scomment}) => {
 
     const{comentuser,comentusername,like,  comment, commentTime}=scomment
 
@@ -28,4 +28,4 @@ const Comment = ({scomment}) => {
     );
 };
 
-export default Comment;
+export default ComentCart;

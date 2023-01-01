@@ -4,7 +4,7 @@ import { userContext } from '../../.././AuthContext/AuthContext'
 import { toast } from 'react-hot-toast'
 import moment from 'moment'
 
-const Post = () => {
+const Post = ({refetch }) => {
   const { user } = useContext(userContext)
 
   const imagehostkey = '361db61aaf2e5a08fc416c3257898005'
@@ -55,7 +55,7 @@ const Post = () => {
 console.log(media)
 
     const createPost = {
-      postUser: user?.email,
+       email: user?.email,
       postUserName: user?.displayName,
       PostUserpik: user?.photoURL,
       media: media,
@@ -76,6 +76,7 @@ console.log(media)
         console.log(data)
 
         if (data.acknowledged) {
+          refetch()
           toast.success('Post successfully')
         }
       })
