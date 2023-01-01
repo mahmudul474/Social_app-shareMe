@@ -100,7 +100,7 @@ const SingelPost = ({ spost }) => {
           </div>
         </div>
 
-        {media && <img src={media} alt="Shoes" />}
+        {media && <img src={media} alt="Shoes" className='rounded-lg' />}
       </div>
 
       <div className='flex justify-between mx-3'>
@@ -110,7 +110,7 @@ const SingelPost = ({ spost }) => {
        
       </div>
 
-      <div className="btn-group w-full px-2 outline-none border-none ">
+      <div className="btn-group w-full px-2 outline-none border-none mt-2 ">
        <Likeapi postId={_id} 
        setLikes={setLikes}
        ></Likeapi>

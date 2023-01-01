@@ -6,11 +6,12 @@ import Post from "../../components/GetAllPost/Post/Post"
 import SingelPost from "../../components/GetAllPost/SingelPost"
 import { useQuery } from '@tanstack/react-query'
 import { FiEdit } from 'react-icons/fi'
+import Mymedia from './Mymedia/Mymedia'
 
 
 const Myprofile = () => {
   const { user } = useContext(userContext)
- const [media,setmedia]=useState({})
+ const [media,setmedia]=useState([])
 
   console.log(media)
 
@@ -22,6 +23,7 @@ const Myprofile = () => {
     queryFn: async () => {
       const res = await fetch(`http://localhost:5000/posts?email=${user?.email}`)
       const data = await res.json()
+      setmedia(data)
       return data
 
     }
@@ -92,24 +94,21 @@ const Myprofile = () => {
             
 
             <div className='col-span-1'>
-              <div className="container mx-auto px-4"> 
+
+
+
+<h3 className='text-bold text-xl capitalize p-4'>MY Media</h3>
+
+              <div className=' grid  lg:grid-cols-2 gap-2'>
                 
-      
-     
-                
-      <section className="py-8 px-4">
-        <div className="flex flex-wrap -mx-4 -mb-8">
-          <div className="md:w-1/4 px-4 mb-8"><img className="rounded shadow-md" src="https://source.unsplash.com/random/1280x720" alt="" /></div>
-          <div className="md:w-1/4 px-4 mb-8"><img className="rounded shadow-md" src="https://source.unsplash.com/random/1280x720" alt="" /></div>
-          <div className="md:w-1/4 px-4 mb-8"><img className="rounded shadow-md" src="https://source.unsplash.com/random/1280x720" alt="" /></div>
-          <div className="md:w-1/4 px-4 mb-8"><img className="rounded shadow-md" src="https://source.unsplash.com/random/1280x720" alt="" /></div>
-          <div className="md:w-1/4 px-4 mb-8"><img className="rounded shadow-md" src="https://source.unsplash.com/random/1280x720" alt="" /></div>
-          <div className="md:w-1/4 px-4 mb-8"><img className="rounded shadow-md" src="https://source.unsplash.com/random/1280x720" alt="" /></div>
-          <div className="md:w-1/4 px-4 mb-8"><img className="rounded shadow-md" src="https://source.unsplash.com/random/1280x720" alt="" /></div>
-          <div className="md:w-1/4 px-4 mb-8"><img className="rounded shadow-md" src="https://source.unsplash.com/random/1280x720" alt="" /></div>
-        </div>
-      </section>
-    </div>
+                 {
+                [...media].reverse().map(media=><Mymedia  media={media} key={media._id}></Mymedia>)
+              }
+             </div>
+
+
+
+              
               
   </div>
 

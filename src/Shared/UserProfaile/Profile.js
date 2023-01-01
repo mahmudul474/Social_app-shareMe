@@ -1,10 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import Post from '../../components/GetAllPost/Post/Post';
 import SingelPost from '../../components/GetAllPost/SingelPost';
 import Rightside from '../../components/righttSideComponent/Rightside';
 import About from '../../Pagess/About/About';
+import Mymedia from '../../Pagess/MyProfile/Mymedia/Mymedia';
 import Header from '../Header/Header';
 import UserAbout from './UserAbout';
 
@@ -14,6 +15,7 @@ const Profile = () => {
   console.log(profile)
     
   const { photoURL, email, name, profileEmail } = profile;
+  const [media,setmedia]=useState([])
   
 
 
@@ -24,6 +26,7 @@ const Profile = () => {
     queryFn: async () => {
       const res = await fetch(`http://localhost:5000/posts?email=${email}`)
       const data = await res.json()
+      setmedia(data)
       return data
 
     }
@@ -80,6 +83,13 @@ const Profile = () => {
         
  <div className='grid lg:grid-cols-4 py-20'>
             <div className='col-span-1'>
+  <div className=' grid  lg:grid-cols-2 gap-2'>
+                
+                 {
+                [...media].reverse().map(media=><Mymedia  media={media} key={media._id}></Mymedia>)
+              }
+             </div>
+
             <UserAbout  profile={profile}></UserAbout> 
             
             </div>

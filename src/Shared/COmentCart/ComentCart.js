@@ -15,7 +15,7 @@ const ComentCart = ({scomment}) => {
               <div className="font-semibold text-sm leading-relaxed">{comentusername}</div>
               <div className="text-normal leading-snug md:leading-normal capitalize">{comment}</div>
 
-              <div className='flex'>
+              <div className='flex '>
                 <Link className='mr-2 underline'>Like</Link>
                 <Link className='mr-2 underline'>Riply</Link>
                 <p className='ml-2'>{commentTime}</p>
