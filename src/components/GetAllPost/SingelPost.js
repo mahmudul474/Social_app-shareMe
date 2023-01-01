@@ -41,7 +41,7 @@ const SingelPost = ({ spost }) => {
 //post comment database
 
 
-    fetch('http://localhost:5000/coment', {
+    fetch('https://social-server-sooty.vercel.app/coment', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -65,7 +65,7 @@ const SingelPost = ({ spost }) => {
   const { data: getcomments, isLoading, refetch } = useQuery({
     queryKey: ['getcomments', _id],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/comments/${_id}`)
+      const res = await fetch(`https://social-server-sooty.vercel.app/comments/${_id}`)
       const data = await res.json()
       setCommentslegth(data)
       return data

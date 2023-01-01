@@ -1,5 +1,7 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
+import About from '../../Pagess/About/About';
+import Header from '../Header/Header';
 
 const Profile = () => {
     const profile=useLoaderData()
@@ -7,16 +9,16 @@ const Profile = () => {
 const {photoURL}=profile
 
     return (
-        <div >
-        <div className='w-full  h-72  relative'>
-            <img  src="https://i.ibb.co/GsytQ4L/download-1.png" className='w-full' alt="" /></div>
-      <div className="p-8 bg-white shadow mt-24 top-32 absolute">
+      <div >
+        <Header></Header>
+        
+      <div className="p-8 bg-white shadow mt-24  ">
        
-        <div className="grid grid-cols-1 md:grid-cols-3">
+        <div className="grid grid-cols-1 lg:grid-cols-3 ">
           
           <div className="grid grid-cols-3 text-center order-last md:order-first mt-20 md:mt-0">
           
-            <div>
+            {/* <div>
           
               <p className="font-bold text-gray-700 text-xl">22</p>
               <p className="text-gray-400">Friends</p>
@@ -30,7 +32,7 @@ const {photoURL}=profile
               
               <p className="font-bold text-gray-700 text-xl">89</p>
               <p className="text-gray-400">Comments</p>
-            </div>
+            </div> */}
           </div>
           <div className="relative">
          
@@ -54,26 +56,18 @@ const {photoURL}=profile
           <h1 className="text-4xl font-medium text-gray-700">
             Jessica Jones, <span className="font-light text-gray-500">27</span>
           </h1>
-          <p className="font-light text-gray-600 mt-3">Bucharest, Romania</p>
-          <p className="mt-8 text-gray-500">
-            Solution Manager - Creative Tim Officer
-          </p>
-          <p className="mt-2 text-gray-500">University of Computer Science</p>
+         
+         
         </div>
-        <div className="mt-12 flex flex-col justify-center">
-          
-          <p className="text-gray-600 text-center font-light lg:px-16">
-            An artist of considerable range, Ryan — the name taken by
-            Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and
-            records all of his own music, giving it a warm, intimate feel with a
-            solid groove structure. An artist of considerable range.
-          </p>
-          <button className="text-indigo-500 py-2 px-4  font-medium mt-4">
-            
-            Show more
-          </button>
+        
+ <div className='grid lg:grid-cols-3 py-20'>
+          <div className='col-span-1'> <About></About></div>
+          <div className='col-span-2'>2</div>
+              </div>
+
         </div>
-      </div>
+       
+
     </div>
     );
 };

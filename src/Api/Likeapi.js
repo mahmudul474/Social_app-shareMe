@@ -17,7 +17,7 @@ const savelike=()=>{
         postid:postId,
         likeuserPhoto:user.photoURL
     }
-fetch(`http://localhost:5000/likes`,{
+fetch(`https://social-server-sooty.vercel.app/likes`,{
     method:'POST',
     headers:{
         'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ fetch(`http://localhost:5000/likes`,{
 const {data:likes=[],refetch}=useQuery({
     queryKey:["likes",postId],
     queryFn:async () => {
-     const res=await fetch(`http://localhost:5000/likes/${postId}`)
+     const res=await fetch(`https://social-server-sooty.vercel.app/likes/${postId}`)
     const data= await res.json()
     console.log(data.length)
     setLikes(data)

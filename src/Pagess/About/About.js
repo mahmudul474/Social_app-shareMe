@@ -52,52 +52,18 @@ if(isLoading){
 
  
 
- <div className="p-16">
-      <div className="p-8 bg-white shadow mt-24">
-        
-        <div className="grid grid-cols-1 md:grid-cols-3">
-          
-          <div className="grid grid-cols-3 text-center order-last md:order-first mt-20 md:mt-0">
-            
-            <div>
-              
-              <p className="font-bold text-gray-700 text-xl">22</p>
-              <p className="text-gray-400">Friends</p>
-            
-            </div>
-            <div>
-              
-              <p className="font-bold text-gray-700 text-xl">10</p>
-              <p className="text-gray-400">Photos</p>
-              
-            </div>
-           
-          </div>
-          <div className="relative">
-            
-            <div className="w-48 h-48 overflow-hidden bg-indigo-100 mx-auto rounded-full shadow-2xl absolute inset-x-0 top-0 -mt-24 flex items-center justify-center text-indigo-500">
-              <img className='w-full h-full' src={photoURL} alt="" />
-            </div>
-          </div>
-          <div className="space-x-8 flex justify-between mt-32 md:mt-0 md:justify-center">
-            <button className="text-white py-2 px-4 uppercase rounded bg-blue-400 hover:bg-blue-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
-            Message
-            </button>
-           
-            <div>
-            <label
+ <div className=" ">
+      <div className="  bg-white  ">
+        <label
 
             onClick={()=>setEditabout(user)}
-            htmlFor="edtiabout-modal"  className="btn"><span><FiEdit></FiEdit></span>Edit about</label>
-           
-            </div>
-          </div>
-        </div>
-        <div className="mt-20 text-center border-b pb-12">
+          htmlFor="edtiabout-modal" className="p-3  flex btn items-center text-white  "><span><FiEdit></FiEdit></span>Edit about</label>
+        
+       
+         
+        <div className=" text-center border-b pb-12">
           
-          <h1 className="text-4xl font-medium text-gray-700">
-            { aboutUserdetails?.name? aboutUserdetails?.name  : displayName} 
-          </h1>
+      
           <h1  className=" flex justify-center items-center text-xl font-medium text-gray-700">
             <span className=' text-xl mr-1'><MdTitle></MdTitle></span> 
             {aboutUserdetails?.title?  aboutUserdetails?.title:"set title on edit about"}
@@ -115,15 +81,19 @@ if(isLoading){
 
 
           
-        <div className='flex justify-center items-center'><p className="font-light flex justify-center items-center  mr-2 text-gray-600 mt-3"><span className=' text-xl mr-1'><BsFillTelephoneForwardFill></BsFillTelephoneForwardFill></span>{aboutUserdetails.phone? aboutUserdetails.phone:"set phone number on edti about"}</p>
-          <p className="font-light flex justify-center items-center  text-gray-600 mt-3"><span className=' text-xl mr-1'><MdEmail></MdEmail></span>{aboutUserdetails?.profileEmail? aboutUserdetails?.profileEmail:"set youre email on edit about"}</p></div>
+        <div className=''><p className="font-light flex justify-center items-center  mr-2 text-gray-600 mt-3"><span className=' text-xl mr-1'><BsFillTelephoneForwardFill></BsFillTelephoneForwardFill></span>{aboutUserdetails.phone? aboutUserdetails.phone:"set phone number on edti about"}</p>
+            <p className="font-light flex justify-center items-center  text-gray-600 mt-3"><span className=' text-xl mr-1'><MdEmail></MdEmail></span>{aboutUserdetails?.profileEmail ? aboutUserdetails?.profileEmail : "set youre email on edit about"}</p></div>
+          
+        
+             
+        
 
           
         </div>
 
 
 
-        <div className="mt-12 flex flex-col justify-center">
+        <div className="mt-12 flex   justify-center">
           
           <p className="text-gray-600 text-center font-light lg:px-16">
          {aboutUserdetails?.about? aboutUserdetails?.about:"write about on edit about"}
