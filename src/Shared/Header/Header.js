@@ -1,56 +1,50 @@
-import React, { useContext, useState } from 'react'
-import { AiFillCaretDown } from 'react-icons/ai'
-import { Link } from 'react-router-dom'
-import { userContext } from '../../AuthContext/AuthContext'
-import { AiFillMessage } from 'react-icons/ai'
+import React, { useContext, useState } from "react";
+import { AiFillCaretDown } from "react-icons/ai";
+import { Link } from "react-router-dom";
+import { userContext } from "../../AuthContext/AuthContext";
+import { AiFillMessage } from "react-icons/ai";
 
 const Header = () => {
-  const { user, logout } = useContext(userContext)
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { user, logout } = useContext(userContext);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-
-
-  const lgNav=<>
-  <li>
-              <Link
-                to="/mesege"
-                aria-label="Our product"
-                title="Our product"
-                className="font-medium tracking-wide   transition-colors duration-200 hover:text-teal-accent-400"
-              >
-                <span className="">
-                  <AiFillMessage></AiFillMessage>
-                </span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/media"
-                aria-label="media"
-                title="media"
-                className="font-medium tracking-wide  transition-colors duration-200 hover:text-teal-accent-400"
-              >
-                Media
-              </Link>
-            </li>
-
-
-
-  
-  
-  </>
-
+  const lgNav = (
+    <>
+      <li>
+        <Link
+          to="/mesege"
+          aria-label="Our product"
+          title="Our product"
+          className="font-medium tracking-wide   transition-colors duration-200 hover:text-teal-accent-400"
+        >
+          <span className="text-2xl">
+            <AiFillMessage></AiFillMessage>
+          </span>
+        </Link>
+      </li>
+      <li>
+        <Link
+          to="/media"
+          aria-label="media"
+          title="media"
+          className="font-medium tracking-wide  transition-colors duration-200 hover:text-teal-accent-400"
+        >
+          Media
+        </Link>
+      </li>
+    </>
+  );
 
   const handlogout = () => {
     logout()
       .then(() => {})
       .catch((err) => {
-        console.log(err)
-      })
-  }
+        console.log(err);
+      });
+  };
 
   return (
-    <div className=" text-black">
+    <div className=" text-black bg-slate-200 rounded-lg sticky top-0 z-50">
       <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
         <div className="relative flex items-center justify-between">
           <Link
@@ -59,44 +53,37 @@ const Header = () => {
             title="Company"
             className="inline-flex items-center"
           >
-            
             <span className="ml-2 text-xl font-bold tracking-wide  uppercase">
               ShareME
             </span>
           </Link>
           <ul className=" items-center hidden space-x-8 lg:flex">
-
-          {
-            lgNav
-          }            
+            {lgNav}
 
             <div className="dropdown dropdown-end">
               <label tabIndex={0}>
                 <div className="flex  ">
-                  {user?.photoURL?
+                  {user?.photoURL ? (
                     <>
-                    <img src={user?.photoURL} className="w-10 h-10 object-cover  relative rounded-full" alt="user" 
-                    />
+                      <img
+                        src={user?.photoURL}
+                        className="w-10 h-10 object-cover  relative rounded-full"
+                        alt="user"
+                      />
                     </>
-                   : 
+                  ) : (
                     <>
-                    <img  className="w-10  h-10 object-cover relative rounded-full"
-                      src="https://i.ibb.co/HNhj8V6/download-2.png " alt='avatar'
-                     
-                    />
+                      <img
+                        className="w-10  h-10 object-cover relative rounded-full"
+                        src="https://i.ibb.co/HNhj8V6/download-2.png "
+                        alt="avatar"
+                      />
                     </>
-
-                  }
+                  )}
 
                   <span tabIndex={0} className="m-auto">
-                    
-                    
-              
-                 {
-                  user?.displayName?.length >4 &&   user?.displayName?.slice(0, 2)
-                 }
-
-                    
+                    {user?.displayName?.length > 4 &&
+                      user?.displayName?.slice(0, 2)}
                   </span>
                   <span
                     tabIndex={0}
@@ -111,9 +98,7 @@ const Header = () => {
                 className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
               >
                 <li>
-                  <Link  className="">
-                    {user?.displayName}
-                  </Link>
+                  <Link className="">{user?.displayName}</Link>
                 </li>
 
                 <li>
@@ -220,8 +205,7 @@ const Header = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Header
-
+export default Header;

@@ -7,6 +7,7 @@ import {ImLocation2 } from "react-icons/im";
 import {MdCastForEducation ,MdEmail} from "react-icons/md";
 
 import {BsCalendarDate, BsFillTelephoneForwardFill} from "react-icons/bs";
+import SmallSpinner from '../../components/Spinner/SmallSpinner';
  
 
 
@@ -38,10 +39,8 @@ console.log(aboutUserdetails)
 
 
 
-
-
 if(isLoading){
-  return <div>Loading...</div>
+  return <SmallSpinner></SmallSpinner>
 
 }
 
@@ -63,12 +62,12 @@ if(isLoading){
         <div className=" text-center border-b pb-12">
           
      
-          
+          <h3 className='text-xl  font-bolod capitalize p-4'>About</h3>
 
           <p className="mt-8  flex justify-center items-center text-gray-500"> <span className='text-xl mr-1'><BsCalendarDate></BsCalendarDate></span>
             {aboutUserdetails?.jobtitle? aboutUserdetails?.jobtitle:"write job type on edit about"}
           </p>
-          <p className="mt-8  flex justify-center items-center text-gray-500"> <span className='text-xl mr-1'><BsCalendarDate></BsCalendarDate></span>
+          <p className="mt-2  flex justify-center items-center text-gray-500"> <span className='text-xl mr-1'><BsCalendarDate></BsCalendarDate></span>
             {aboutUserdetails?.DateOfBirth? aboutUserdetails?.DateOfBirth:"write DateOf Birth on edit about"}
           </p>
           

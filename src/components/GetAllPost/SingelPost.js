@@ -1,17 +1,17 @@
-import { useQuery } from '@tanstack/react-query'
-import moment from 'moment'
-import React, { useContext, useEffect, useState } from 'react'
-import { AiOutlineLike } from 'react-icons/ai'
-import { BiComment } from 'react-icons/bi'
-import { RiShareForward2Fill } from 'react-icons/ri'
-import { postcomnet, postcomnetapis } from '../../Api/CommnetApi/commentapi'
-import Likeapi from '../../Api/Likeapi'
-import { userContext } from '../../AuthContext/AuthContext'
-import ComentCart from '../../Shared/COmentCart/ComentCart'
-import CommentPostCart from '../../Shared/CommentPostCart/CommentPostCart'
+import { useQuery } from "@tanstack/react-query";
+import moment from "moment";
+import React, { useContext, useEffect, useState } from "react";
+import { BiComment } from "react-icons/bi";
+import { RiShareForward2Fill } from "react-icons/ri";
+import { postcomnetapis } from "../../Api/CommnetApi/commentapi";
+import Likeapi from "../../Api/Likeapi";
+import { userContext } from "../../AuthContext/AuthContext";
+import ComentCart from "../../Shared/COmentCart/ComentCart";
+import CommentPostCart from "../../Shared/CommentPostCart/CommentPostCart";
+import Count from "../../Shared/Count/Count";
+import SmallSpinner from "../Spinner/SmallSpinner";
 
-
-const SingelPost = ({ spost }) => {
+const SingelPost = ({ spost, handlepostDettails }) => {
   const {
     _id,
     postUserName,
@@ -19,61 +19,60 @@ const SingelPost = ({ spost }) => {
     PostUserpik,
     media,
     postTime,
-    postTitle,
-  } = spost
- 
+    postTitle
+  } = spost;
 
-  const { user } = useContext(userContext)
-  const [commentlength, setCommentslegth] = useState(0)
-  const [likes, setLikes] = useState([])
-  
- 
+  const { user } = useContext(userContext);
+  const [commentlength, setCommentslegth] = useState(0);
+  const [likes, setLikes] = useState([]);
+
   const handlecoment = (event) => {
-    event.preventDefault()
-    const from = event.target
-    const comment = from.comment.value
-    const commentTime = moment().calendar()
+    event.preventDefault();
+    const from = event.target;
+    const comment = from.comment.value;
+    const commentTime = moment().calendar();
 
     const comments = {
       comentuser: user?.photoURL,
       comentusername: user?.displayName,
       comment: comment,
       postid: _id,
-      commentTime: commentTime,
-    }
-   
-//post comment database
-  
-      postcomnetapis(comments)
+      commentTime: commentTime
+    };
+
+    //post comment database
+
+    postcomnetapis(comments)
       .then((data) => {
-        refetch()
-        from.reset()
-        
+        refetch();
+        from.reset();
       })
       .catch((err) => {
-        console.log(err)
-      })
-  }
+        console.log(err);
+      });
+  };
 
+  // get all comments fromsever
 
-// get all comments fromsever
-
-  const { data: getcomments, isLoading, refetch } = useQuery({
-    queryKey: ['getcomments', _id],
+  const {
+    data: getcomments,
+    isLoading,
+    refetch
+  } = useQuery({
+    queryKey: ["getcomments", _id],
     queryFn: async () => {
-      const res = await fetch(`https://social-server-sooty.vercel.app/comments/${_id}`)
-      const data = await res.json()
-      setCommentslegth(data)
-      return data
-    },
-  })
+      const res = await fetch(
+        `https://social-server-sooty.vercel.app/comments/${_id}`
+      );
+      const data = await res.json();
+      setCommentslegth(data);
 
-
-
-
+      return data;
+    }
+  });
 
   if (isLoading) {
-    return <div>Loading...</div>
+    return <SmallSpinner></SmallSpinner>;
   }
 
   return (
@@ -84,7 +83,7 @@ const SingelPost = ({ spost }) => {
             <div className="flex items-center space-x-4">
               <img
                 className="w-14 h-14 rounded-full"
-                src={PostUserpik}  
+                src={PostUserpik}
                 alt=""
               />
               <div className="font-medium text-left dark:text-white">
@@ -100,44 +99,32 @@ const SingelPost = ({ spost }) => {
           </div>
         </div>
 
-        {media && <img src={media} alt="Shoes" className='rounded-lg' />}
+        {media && <img src={media} alt="Shoes" className="rounded-lg" />}
       </div>
 
-      <div className='flex justify-between mx-3'>
-
-        <p>{likes.length ===0 ?  "" : <span className='capitalize'>{likes.length} Pepole likes </span>}</p>
-       <p> {commentlength.length ===0 ? "":<span className='capitalize '>Commnets  {commentlength.length}</span>}</p>
-       
-      </div>
+      <Count likes={likes} commentlength={commentlength}></Count>
 
       <div className="btn-group w-full px-2 outline-none border-none mt-2 ">
-       <Likeapi postId={_id} 
-       setLikes={setLikes}
-       ></Likeapi>
+        <Likeapi postId={_id} setLikes={setLikes}></Likeapi>
         <button
           required
           className="flex justify-center items-center  bg-gray-300 boder-none hover:bg-white boder-none  text-black outline-none hover:outline-none w-2/6 "
         >
           <span className="text-xl mr-1">
-            
             <BiComment></BiComment>
           </span>
           Comment
         </button>
+
         <button className=" flex justify-center bg-gray-300 boder-none hover:bg-white  items-center  boder-nonetext-black outline-none hover:outline-none w-2/6  ">
           <span className="text-xl mr-1">
-         
             <RiShareForward2Fill></RiShareForward2Fill>
           </span>
-          Dettails
+          Share
         </button>
       </div>
-      
-
-
 
       <CommentPostCart handlecoment={handlecoment}></CommentPostCart>
-
 
       <div>
         {[...getcomments].reverse().map((scomment) => (
@@ -145,7 +132,7 @@ const SingelPost = ({ spost }) => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SingelPost
+export default SingelPost;

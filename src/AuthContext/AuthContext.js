@@ -58,17 +58,16 @@ unsubscribe()
 
 
   
-    const info={
-  createuser,
-  login,
-  logout,
-  loading,
-  user,
-  uptadeUser,
-  loginwithgoogle,
-
-
-    }
+    const info = {
+      createuser,
+      login,
+      logout,
+      loading,
+      setLoading,
+      user,
+      uptadeUser,
+      loginwithgoogle
+    };
          
     return (
         <userContext.Provider value={info}>
