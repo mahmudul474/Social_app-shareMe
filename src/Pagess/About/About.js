@@ -30,7 +30,7 @@ const { data:aboutUserdetails,isLoading,refetch} = useQuery({
    
 })
 
-console.log(aboutUserdetails)
+
 
 
 

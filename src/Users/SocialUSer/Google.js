@@ -41,7 +41,7 @@ const Google = () => {
             email:email,
             photoURL:photo
         }
-        console.log(typeof(userdettailse))
+      
         
         fetch(`https://social-server-sooty.vercel.app/userabout/${email}`,{
             method:'PUT',
@@ -51,7 +51,7 @@ const Google = () => {
             body:JSON.stringify(userdettailse),
         }).then(res=>res.json())
         .then(data=>{
-            console.log(data)
+           
            if(data.acknowledged){
             toast.success("user  registered successfully",90000)
             navigate("/home")

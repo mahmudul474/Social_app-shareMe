@@ -13,7 +13,7 @@ const Myprofile = () => {
   const { user } = useContext(userContext);
   const [media, setmedia] = useState([]);
 
-  console.log(media);
+
 
   const {
     data: myposts = [],

@@ -18,11 +18,11 @@ const Register = () => {
     formState: { errors }
   } = useForm();
 
-  console.log(imagehostkey);
 
-  const handleRegister = (data) => {
+
+  const handleRegister = data => {
     const image = data.photo[0];
-    console.log(image);
+
     const formdata = new FormData();
     formdata.append("image", image);
 
@@ -32,15 +32,14 @@ const Register = () => {
       method: "POST",
       body: formdata
     })
-      .then((res) => res.json())
-      .then((imagedata) => {
+      .then(res => res.json())
+      .then(imagedata => {
         ///userphot
         const photo = imagedata.data.display_url;
-        console.log(photo);
 
         //craate user
         createuser(data.email, data.password)
-          .then((result) => {
+          .then(result => {
             setErro("");
 
             const user = result.user;
@@ -50,7 +49,7 @@ const Register = () => {
             navigate("/home");
             saveduser(data.name, data.email, photo);
           })
-          .catch((err) => {
+          .catch(err => {
             const message = err.message;
             setErro(message);
             alert(message);

@@ -12,7 +12,7 @@ const Rightside = () => {
     }
   });
 
-  console.log(allusers);
+
 
   return (
     <div className="sticky top-0 z-50 pl-5">

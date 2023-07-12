@@ -38,8 +38,7 @@ const {data:likes=[],refetch}=useQuery({
     queryKey:["likes",postId],
     queryFn:async () => {
      const res=await fetch(`https://social-server-sooty.vercel.app/likes/${postId}`)
-    const data= await res.json()
-    console.log(data.length)
+    const data = await res.json();
     setLikes(data)
     return data
     },

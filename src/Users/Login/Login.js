@@ -15,12 +15,12 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handellogin = (data) => {
-    console.log(data);
+
     login(data.email, data.password)
       .then((result) => {
         setEro("");
         const user = result.user;
-        console.log(user);
+
         setLoading(true);
         navigate("/home");
       })

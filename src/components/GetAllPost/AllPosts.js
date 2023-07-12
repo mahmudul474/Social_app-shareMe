@@ -22,34 +22,17 @@ useEffect(()=>{
 
 },[allPosts])
 
-
-    
-
-    
-    
-
-
-  
     return (
+      <div>
         <div>
-            
-            <div><Post  ></Post></div>
-
-     
-          
+          <Post></Post>
+        </div>
         <div>
-        {
-            [...allPosts].reverse().map(spost=><SingelPost key={spost._id}   spost={spost}></SingelPost>)
-            }
+          {[...allPosts].reverse().map(spost => (
+            <SingelPost key={spost._id} spost={spost}></SingelPost>
+          ))}
         </div>
-        
-
-  
-            
-           
-
-
-        </div>
+      </div>
     );
 };
 

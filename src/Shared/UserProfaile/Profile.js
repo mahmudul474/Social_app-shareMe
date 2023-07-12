@@ -12,7 +12,7 @@ import UserAbout from "./UserAbout";
 
 const Profile = () => {
   const profile = useLoaderData();
-  console.log(profile);
+
 
   const { photoURL, email, name, profileEmail } = profile;
   const [media, setmedia] = useState([]);
