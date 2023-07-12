@@ -22,7 +22,9 @@ const [editabout,setEditabout]=useState()
 const { data:aboutUserdetails,isLoading,refetch} = useQuery({
   queryKey: ['aboutUserdetailsdetails',],
   queryFn:async () =>{
-        const res=await  fetch(`https://social-server-sooty.vercel.app/user/about/${user?.email}`)
+        const res = await fetch(
+          `http://localhost:5000/user/about/${user?.email}`
+        );
         const data = await res.json();
        
         return data

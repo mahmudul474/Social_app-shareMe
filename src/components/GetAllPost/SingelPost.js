@@ -61,9 +61,7 @@ const SingelPost = ({ spost, handlepostDettails }) => {
   } = useQuery({
     queryKey: ["getcomments", _id],
     queryFn: async () => {
-      const res = await fetch(
-        `https://social-server-sooty.vercel.app/comments/${_id}`
-      );
+      const res = await fetch(`http://localhost:5000/comments/${_id}`);
       const data = await res.json();
       setCommentslegth(data);
 

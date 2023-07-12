@@ -36,27 +36,24 @@ const EditAbout = ({ user, refetch }) => {
         DateOfBirth: DateOfBirth,
       }
  
-      fetch(`https://social-server-sooty.vercel.app/userabout/${user?.email}`, {
-        method: 'PUT',
+      fetch(`http://localhost:5000/userabout/${user?.email}`, {
+        method: "PUT",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json"
         },
 
-        body: JSON.stringify(userAbout),
+        body: JSON.stringify(userAbout)
       })
-        .then((res) => res.json())
-        .then((data) => {
-         
+        .then(res => res.json())
+        .then(data => {
           if (data.acknowledged) {
-            toast.success('  Edit About successfully')
-            refetch()
-          
-           
+            toast.success("  Edit About successfully");
+            refetch();
           }
         })
-       .catch((err) => {
-          console.log(err)
-        })
+        .catch(err => {
+          console.log(err);
+        });
 
   }
 

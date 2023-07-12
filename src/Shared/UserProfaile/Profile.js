@@ -13,7 +13,6 @@ import UserAbout from "./UserAbout";
 const Profile = () => {
   const profile = useLoaderData();
 
-
   const { photoURL, email, name, profileEmail } = profile;
   const [media, setmedia] = useState([]);
 
@@ -34,14 +33,14 @@ const Profile = () => {
   });
 
   if (isLoading) {
-    return <SmallSpinner></SmallSpinner>
+    return <SmallSpinner></SmallSpinner>;
   }
 
   return (
     <div>
       <Header></Header>
-      <div className="mt-24 px-10">
-        <div className="p-8 bg-white shadow  px-16 ">
+      <div className="mt-24 ">
+        <div className="lg:p-8 bg-white shadow  ">
           <div className="grid grid-cols-1 lg:grid-cols-3 ">
             <div className="grid grid-cols-3 text-center order-last md:order-first mt-20 md:mt-0"></div>
             <div className="relative">
@@ -63,13 +62,15 @@ const Profile = () => {
             </div>
           </div>
           <div className=" text-center border-b pb-12">
-            <h1 className="text-4xl font-medium text-gray-700">{name}</h1>
+            <h1 className="text-4xl font-medium text-gray-700 lg:mt-[60px]">
+              {name}
+            </h1>
           </div>
 
           <div className="grid lg:grid-cols-4 ">
             <div className="col-span-1">
               <div className=" grid  lg:grid-cols-2 gap-2 mt-6">
-                {[...media].reverse().map((media) => (
+                {[...media].reverse().map(media => (
                   <Mymedia media={media} key={media._id}></Mymedia>
                 ))}
               </div>
@@ -78,13 +79,13 @@ const Profile = () => {
             </div>
             <div className="col-span-2">
               <div>
-                {[...userpost].reverse().map((post) => (
+                {[...userpost].reverse().map(post => (
                   <SingelPost spost={post} key={post._id}></SingelPost>
                 ))}
               </div>
             </div>
 
-            <div className="col-span-1">
+            <div className="col-span-1  hidden lg:block">
               <Rightside></Rightside>
             </div>
           </div>

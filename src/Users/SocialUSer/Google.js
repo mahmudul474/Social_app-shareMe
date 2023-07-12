@@ -43,23 +43,20 @@ const Google = () => {
         }
       
         
-        fetch(`https://social-server-sooty.vercel.app/userabout/${email}`,{
-            method:'PUT',
-            headers:{
-                'Content-Type': 'application/json',
-            },
-            body:JSON.stringify(userdettailse),
-        }).then(res=>res.json())
-        .then(data=>{
-           
-           if(data.acknowledged){
-            toast.success("user  registered successfully",90000)
-            navigate("/home")
-
-           
-           }
-            
+        fetch(`http://localhost:5000/userabout/${email}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(userdettailse)
         })
+          .then(res => res.json())
+          .then(data => {
+            if (data.acknowledged) {
+              toast.success("user  registered successfully", 90000);
+              navigate("/home");
+            }
+          });
 
 
          }

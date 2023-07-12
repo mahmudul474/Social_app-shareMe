@@ -5,10 +5,11 @@ import { toast } from "react-hot-toast";
 import moment from "moment";
 import { useState } from "react";
 
-const Post = ({ refetch }) => {
+const Post = () => {
   const { user } = useContext(userContext);
   const imagehostkey = "361db61aaf2e5a08fc416c3257898005";
   const [img, setImg] = useState("");
+  const [text, setText] = useState("");
 
   const handleImgUpload = e => {
     const img = e.target;
@@ -30,22 +31,22 @@ const Post = ({ refetch }) => {
       .catch(ero => {});
   };
 
-  const savepostDatabase = (titile, media) => {
+  const savepostDatabase = () => {
+    if (img === "" && text === "") {
+      return toast.error("Please enter a photo or text");
+    }
+
     const postTime = moment().format("lll");
-
-    console.log(media);
-
     const createPost = {
       email: user?.email,
       postUserName: user?.displayName,
       PostUserpik: user?.photoURL,
-      media: media,
-      postTitle: titile,
-
+      media: img,
+      postTitle: text,
       postTime: postTime
     };
 
-    fetch("https://social-server-sooty.vercel.app/post", {
+    fetch("http://localhost:5000/post", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -57,16 +58,18 @@ const Post = ({ refetch }) => {
         console.log(data);
 
         if (data.acknowledged) {
-          refetch();
+      
           toast.success("Post successfully");
+          setImg("");
+          setText("");
         }
       })
-      .catch(erro => console.log(erro));
+      .catch(erro => toast.error(erro.message));
   };
 
   return (
     <div>
-      <form className="bg-base-300 py-7 rounded-sm">
+      <div className="bg-base-300 py-7 rounded-sm">
         <div className="flex justify-center mb-3 items-center">
           {img && (
             <img className="w-[150px] h-[150px] rounded    " src={img} alt="" />
@@ -117,14 +120,15 @@ const Post = ({ refetch }) => {
 
                 <textarea
                   id="chat"
+                  value={text}
                   name="usertext"
-                  required
+                  onChange={e => setText(e.target.value)}
                   rows={1}
                   className="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="write something ....?"
                 />
                 <button
-                  type="submit"
+                  onClick={() => savepostDatabase()}
                   className="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600"
                 >
                   <svg
@@ -141,7 +145,7 @@ const Post = ({ refetch }) => {
             </>
           </div>
         </div>
-      </form>
+      </div>
     </div>
   );
 };

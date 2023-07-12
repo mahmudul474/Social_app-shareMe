@@ -40,7 +40,7 @@ const router = createBrowserRouter([
   {
     path: "/profaile/:id",
     loader: async ({ params }) =>
-      fetch(`https://social-server-sooty.vercel.app/users/${params.id}`),
+      fetch(`http://localhost:5000/users/${params.id}`),
     element: <Profile></Profile>
   },
   {

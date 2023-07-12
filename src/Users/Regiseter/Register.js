@@ -79,15 +79,15 @@ const Register = () => {
       photoURL: photo
     };
 
-    fetch("https://social-server-sooty.vercel.app/users", {
+    fetch("http://localhost:5000/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(userdettailse)
     })
-      .then((res) => res.json())
-      .then((data) => {
+      .then(res => res.json())
+      .then(data => {
         if (data.acknowledged) {
           setLoading(true);
           toast.success("user  registered successfully", 90000);

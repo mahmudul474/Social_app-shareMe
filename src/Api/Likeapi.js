@@ -10,40 +10,36 @@ const{user}=useContext(userContext)
 const  handleLike=()=>{
     savelike()
 }
-const savelike=()=>{
-    const likes={
-        like:user?.uid || user.email,
-        likerusername:user.displayName,
-        postid:postId,
-        likeuserPhoto:user.photoURL
-  }
-  
+const savelike = () => {
+  const likes = {
+    like: user?.uid || user.email,
+    likerusername: user.displayName,
+    postid: postId,
+    likeuserPhoto: user.photoURL
+  };
 
-  
-fetch(`https://social-server-sooty.vercel.app/likes`,{
-    method:'POST',
-    headers:{
-        'Content-Type': 'application/json',
+  fetch(`http://localhost:5000/likes`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
     },
-    body:JSON.stringify(likes)
-})
-.then(res=>res.json())
-.then(data=>{
-    refetch()
-    
-})
-}
-
-const {data:likes=[],refetch}=useQuery({
-    queryKey:["likes",postId],
-    queryFn:async () => {
-     const res=await fetch(`https://social-server-sooty.vercel.app/likes/${postId}`)
-    const data = await res.json();
-    setLikes(data)
-    return data
-    },
-    
+    body: JSON.stringify(likes)
   })
+    .then(res => res.json())
+    .then(data => {
+      refetch();
+    });
+};
+
+const { data: likes = [], refetch } = useQuery({
+  queryKey: ["likes", postId],
+  queryFn: async () => {
+    const res = await fetch(`http://localhost:5000/likes/${postId}`);
+    const data = await res.json();
+    setLikes(data);
+    return data;
+  }
+});
 
 
 

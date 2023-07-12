@@ -23,7 +23,7 @@ const Myprofile = () => {
     queryKey: ["myposts", user?.email],
     queryFn: async () => {
       const res = await fetch(
-        `https://social-server-sooty.vercel.app/posts?email=${user?.email}`
+        `http://localhost:5000/posts?email=${user?.email}`
       );
       const data = await res.json();
       setmedia(data);
