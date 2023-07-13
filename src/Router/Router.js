@@ -5,11 +5,11 @@ import About from "../Pagess/About/About";
 import AllMedia from "../Pagess/ALLMedia/AllMedia";
 import Home from "../Pagess/HomPage/Home";
 import Myprofile from "../Pagess/MyProfile/Myprofile";
-
 import Profile from "../Shared/UserProfaile/Profile";
 import Login from "../Users/Login/Login";
 import Register from "../Users/Regiseter/Register";
 import Private from "./PrivateRoute/Private";
+import MyAbout from "../Pagess/MyAbout/MyAbout";
 
 const router = createBrowserRouter([
   {
@@ -47,7 +47,7 @@ const router = createBrowserRouter([
     path: "/about",
     element: (
       <Private>
-        <About></About>{" "}
+        <MyAbout></MyAbout>
       </Private>
     )
   },
@@ -59,6 +59,7 @@ const router = createBrowserRouter([
       </Private>
     )
   },
+
   {
     path: "/media",
     element: (

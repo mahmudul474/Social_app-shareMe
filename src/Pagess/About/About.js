@@ -19,120 +19,119 @@ const [editabout,setEditabout]=useState()
 
  
 
-const { data:aboutUserdetails,isLoading,refetch} = useQuery({
-  queryKey: ['aboutUserdetailsdetails',],
-  queryFn:async () =>{
-        const res = await fetch(
-          `http://localhost:5000/user/about/${user?.email}`
-        );
-        const data = await res.json();
-       
-        return data
+const {
+  data: aboutUserdetails,
+  isLoading,
+  refetch
+} = useQuery({
+  queryKey: ["aboutUserdetailsdetails"],
+  queryFn: async () => {
+    const res = await fetch(
+      `https://social-server-sooty.vercel.app/user/about/${user?.email}`
+    );
+    const data = await res.json();
+
+    return data;
   }
-   
-})
+});
 
-
-
-
-
-
-
-
-
-
-if(isLoading){
-  return <SmallSpinner></SmallSpinner>
-
+if (isLoading) {
+  return <SmallSpinner></SmallSpinner>;
 }
 
+return (
+  <div className=" ">
+    <div className="  bg-white  ">
+      <div className="flex justify-end
+      items-center mt-7 ">
+        {" "}
+        <label
+          onClick={() => setEditabout(user)}
+          htmlFor="edtiabout-modal"
+          className="p-3  flex btn items-center   text-white w-28  "
+        >
+          <span>
+            <FiEdit></FiEdit>
+          </span>
+          Edit about
+        </label>
+      </div>
+      <div className=" text-center border-b pb-12">
+        <h3 className="text-xl  font-bolod capitalize p-4">About</h3>
 
-  return (
+        <p className="mt-8  flex justify-center items-center text-gray-500">
+          {" "}
+          <span className="text-xl mr-1">
+            <BsCalendarDate></BsCalendarDate>
+          </span>
+          {aboutUserdetails?.jobtitle
+            ? aboutUserdetails?.jobtitle
+            : "write job type on edit about"}
+        </p>
+        <p className="mt-2  flex justify-center items-center text-gray-500">
+          {" "}
+          <span className="text-xl mr-1">
+            <BsCalendarDate></BsCalendarDate>
+          </span>
+          {aboutUserdetails?.DateOfBirth
+            ? aboutUserdetails?.DateOfBirth
+            : "write DateOf Birth on edit about"}
+        </p>
 
- 
+        <p className="mt-2 flex justify-center items-center text-gray-500">
+          <span className="text-xl mr-1">
+            <MdCastForEducation></MdCastForEducation>
+          </span>
+          {aboutUserdetails?.eduction
+            ? aboutUserdetails?.eduction
+            : "write education edit about"}
+        </p>
 
- <div className=" ">
-      <div className="  bg-white  ">
-        
-        <div className='hidden'>  <label
-          
+        <p className="font-light flex justify-center items-center  text-gray-600 mt-3">
+          <span className=" text-xl mr-1">
+            <ImLocation2></ImLocation2>
+          </span>
+          {aboutUserdetails?.curentcity
+            ? aboutUserdetails?.curentcity
+            : "write localtion on edit about"}
+        </p>
 
-            onClick={()=>setEditabout(user)}
-          htmlFor="edtiabout-modal" className="p-3  flex btn items-center   text-white w-28  "><span><FiEdit></FiEdit></span>Edit about</label></div>
-       
-         
-        <div className=" text-center border-b pb-12">
-          
-     
-          <h3 className='text-xl  font-bolod capitalize p-4'>About</h3>
-
-          <p className="mt-8  flex justify-center items-center text-gray-500"> <span className='text-xl mr-1'><BsCalendarDate></BsCalendarDate></span>
-            {aboutUserdetails?.jobtitle? aboutUserdetails?.jobtitle:"write job type on edit about"}
+        <div className="">
+          <p className="font-light flex justify-center items-center  mr-2 text-gray-600 mt-3">
+            <span className=" text-xl mr-1">
+              <BsFillTelephoneForwardFill></BsFillTelephoneForwardFill>
+            </span>
+            {aboutUserdetails?.phone
+              ? aboutUserdetails.phone
+              : "set phone number on edti about"}
           </p>
-          <p className="mt-2  flex justify-center items-center text-gray-500"> <span className='text-xl mr-1'><BsCalendarDate></BsCalendarDate></span>
-            {aboutUserdetails?.DateOfBirth? aboutUserdetails?.DateOfBirth:"write DateOf Birth on edit about"}
+          <p className="font-light flex justify-center items-center  text-gray-600 mt-3">
+            <span className=" text-xl mr-1">
+              <MdEmail></MdEmail>
+            </span>
+            {aboutUserdetails?.profileEmail
+              ? aboutUserdetails?.profileEmail
+              : "set youre email on edit about"}
           </p>
-          
-          <p className="mt-2 flex justify-center items-center text-gray-500"><span className='text-xl mr-1'><MdCastForEducation></MdCastForEducation></span>{aboutUserdetails?.eduction? aboutUserdetails?.eduction:"write education edit about"}</p>
-
-          <p className="font-light flex justify-center items-center  text-gray-600 mt-3"><span className=' text-xl mr-1'><ImLocation2></ImLocation2></span>{aboutUserdetails?.curentcity?  aboutUserdetails?.curentcity:"write localtion on edit about"}</p>
-
-
-          
-        <div className=''><p className="font-light flex justify-center items-center  mr-2 text-gray-600 mt-3"><span className=' text-xl mr-1'><BsFillTelephoneForwardFill></BsFillTelephoneForwardFill></span>{aboutUserdetails?.phone? aboutUserdetails.phone:"set phone number on edti about"}</p>
-            <p className="font-light flex justify-center items-center  text-gray-600 mt-3"><span className=' text-xl mr-1'><MdEmail></MdEmail></span>{aboutUserdetails?.profileEmail ? aboutUserdetails?.profileEmail : "set youre email on edit about"}</p>
-
-             
-            
-          
-          
-          </div>
-          
-      
-             
-           
-          
-          
-
-          
-        </div>
-
-
-
-        <div className="mt-12 flex   justify-center">
-          
-          <p className="text-gray-600 text-center font-light lg:px-16">
-         {aboutUserdetails?.about? aboutUserdetails?.about:"write about on edit about"}
-          </p>
-        
         </div>
       </div>
+      <div className="mt-12 flex   justify-center">
+        <p className="text-gray-600 text-center font-light lg:px-16">
+          {aboutUserdetails?.about
+            ? aboutUserdetails?.about
+            : "write about on edit about"}
+        </p>
+      </div>
+    </div>
 
-
-      
- 
-
-
-
-
-
-      <EditAbout   
+    <EditAbout
       refetch={refetch}
       aboutUserdetails={aboutUserdetails}
-        user={user}
-        editabout={editabout}
-        
-        ></EditAbout>
-
-
-
-
-    </div> 
-
-    
-
-    
-  )
+      user={user}
+      editabout={editabout}
+    ></EditAbout>
+  </div>
+);
 }
 
 export default About

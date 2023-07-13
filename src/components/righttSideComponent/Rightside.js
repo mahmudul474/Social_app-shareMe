@@ -12,13 +12,11 @@ const Rightside = () => {
     }
   });
 
-
-
   return (
     <div className="sticky top-0 z-50 pl-5">
       <h3 className="text-left p-6  text-xl capitalize font-bold">Friends</h3>
       <div>
-        {allusers?.map((user) => (
+        {allusers?.map(user => (
           <User key={user._id} user={user}></User>
         ))}
       </div>

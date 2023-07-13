@@ -74,8 +74,8 @@ const SingelPost = ({ spost, handlepostDettails }) => {
   }
 
   return (
-    <div className="my-7 bg-slate-200 py-4 shadow-2xl">
-      <div className="card w-full  ">
+    <div className="my-7 z-0  bg-slate-200 py-4 shadow-2xl">
+      <div className="card w-full  z-0   ">
         <div className="card-title ml-3">
           <div>
             <div className="flex items-center space-x-4">
@@ -125,7 +125,7 @@ const SingelPost = ({ spost, handlepostDettails }) => {
       <CommentPostCart handlecoment={handlecoment}></CommentPostCart>
 
       <div>
-        {[...getcomments].reverse().map((scomment) => (
+        {[...getcomments].reverse().map(scomment => (
           <ComentCart scomment={scomment} key={scomment._id}></ComentCart>
         ))}
       </div>

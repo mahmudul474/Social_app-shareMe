@@ -6,8 +6,8 @@ const ComentCart = ({scomment}) => {
     const{comentuser,comentusername,like,  comment, commentTime}=scomment
 
     return (
-      <div className="flex items-center    dark:bg-gray-800">
-        <div className="  dark:bg-gray-800 text-black dark:text-gray-200 p-4 antialiased flex max-w-lg">
+      <div className="flex items-center z-10  ">
+        <div className="   text-black dark:text-gray-200 p-4 antialiased flex max-w-lg">
           <img
             className="rounded-full h-8 w-8 mr-2 mt-1 "
             src={comentuser}

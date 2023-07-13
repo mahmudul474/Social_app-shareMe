@@ -39,13 +39,13 @@ const Header = () => {
     logout()
       .then(() => {})
       .catch((err) => {
-     
+        console.log(err);
       });
   };
 
   return (
-    <div className=" text-black bg-base-100 rounded-lg sticky top-0 z-50">
-      <div className="px-4 py-5 mx-auto  md:px-24 lg:px-8">
+    <div className=" text-black bg-slate-200 rounded-lg sticky top-0 z-50">
+      <div className="px-4 py-5 mx-auto   md:px-24 lg:px-8">
         <div className="relative flex items-center justify-between">
           <Link
             to="/home"
